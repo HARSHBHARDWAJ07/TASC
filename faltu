@@ -1,0 +1,149 @@
+app.post('/signup', async (req, res) => {
+  const { email, password, username } = req.body;
+
+  try {
+    // Check if user already exists
+    const checkResult = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+
+    if (checkResult.rows.length > 0) {
+      return res.status(400).json({ message: 'User already exists. Please login.' });
+    }
+
+    // Generate hashed password
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    // Generate OTP and store in-memory or database (in-memory for simplicity here)
+    const otp = generateOTP();
+    const otpExpiresAt = Date.now() + otpExpiryTime;
+
+    // Store OTP in a table for real-world apps (e.g., in-memory here for demo purposes)
+    // e.g., 'INSERT INTO otp_verification (email, otp, expiry_time) VALUES (...)'
+
+    // Send OTP email
+
+    async function sendMail({ to, subject, text }) {
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'Email Verification for Signup',
+        html:  ` <p>Hi ${username},\n\nYour OTP for signup is ${otp}. It will expire in 10 minutes.\n\nThank you! </p>`,
+      };
+    
+      try {
+        await transporter.sendMail(mailOptions);
+        console.log(`Email sent successfully to ${to}`);
+      } catch (error) {
+        console.error('Error sending email:', error);
+        throw new Error('Email sending failed');
+      }
+    } 
+
+
+   
+
+    await transporter.sendMail(mailOptions);
+     
+    // Insert user into the database but mark as unverified
+    const result = await db.query(
+      'INSERT INTO users (email, username, hashed_password, is_verified) VALUES ($1, $2, $3, $4) RETURNING *',
+      [email, username, hashedPassword, false]
+    );
+
+    res.status(201).json({ message: 'Signup successful. Verify email to complete.', otpExpiresAt }); // Remove OTP in prod
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// POST /verify-otp endpoint
+app.post('/verify-otp', async (req, res) => {
+  const { email, otp } = req.body;
+
+  try {
+    // Fetch the stored OTP and expiry (mocking in-memory storage here)
+    // Real-world apps will query OTP data from a database table
+    // Example: `SELECT * FROM otp_verification WHERE email = $1`
+
+    const storedOtp = 'mocked-otp'; // Replace with actual fetched OTP
+    const storedOtpExpiry = Date.now() + otpExpiryTime; // Replace with actual expiry
+
+    if (!storedOtp || storedOtpExpiry < Date.now()) {
+      return res.status(400).json({ message: 'OTP expired or invalid.' });
+    }
+
+    if (storedOtp !== otp) {
+      return res.status(400).json({ message: 'Invalid OTP.' });
+    }
+
+    // Mark user as verified
+    await db.query('UPDATE users SET is_verified = $1 WHERE email = $2', [true, email]);
+
+    res.status(200).json({ message: 'Email verified successfully.' });
+  } catch (err) {
+    console.error('Unexpected error during verification:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+
+
+
+function generateOTP() {
+    return Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
+  }
+
+  
+  const transporter = nodemailer.createTransport({
+    service: 'smtp.gmail.com',
+    port:465,
+    secure:true, // Change to your email service
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  
+  const saltRounds = 10;
+  const otpExpiryTime = 10 * 60 * 1000;
+
+  function sendEmail({ email, subject, message }) {
+    return new Promise((resolve, reject) => {
+      var transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "tascco07@gmail.com",
+          pass: "kxyfchvuiwfmastl",
+        },
+      });
+  
+      const mail_configs = {
+        from: "tascco07@gmail.com",
+        to: email,
+        subject: subject,
+        html: `
+        <p>${message}</p>
+        <p>Best Regards</p>
+        `,
+      };
+      transporter.sendMail(mail_configs, function (error, info) {
+        if (error) {
+          console.log(error);
+          return reject({ message: `An error has occurred` });
+        }
+        return resolve({ message: "Email sent successfully" });
+      });
+    }); 
+  }
+  
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: 'Email Verification for Signup',
+    html:  ` <p>Hi ${username},\n\nYour OTP for signup is ${otp}. It will expire in 10 minutes.\n\nThank you! </p>`,
+  };
+
+  await transporter.sendMail(mailOptions);

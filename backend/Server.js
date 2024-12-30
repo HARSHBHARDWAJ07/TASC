@@ -8,12 +8,15 @@ import session from "express-session";
 import bodyParser from "body-parser";
 import { Strategy as LocalStrategy } from "passport-local";
 import nodemailer from "nodemailer";
+import GoogleStragy from "passport-google-oauth2";
+import quizRoutes from './Quiz/quizRoutes.js';
+import userRoutes from './Quiz/userRoutes.js';
 
-
+ 
 const app = express();
 const port = 4000;
 const saltRounds = 10;
-const otpExpiryTime = 10 * 60 * 1000
+const otpExpiryTime = 1000 * 60 * 1000;
 
 env.config();
 
@@ -37,6 +40,9 @@ app.use(passport.session());
 
 
 
+
+
+
 const db = new pg.Client({
   user: process.env.PG_USER,
   host: process.env.PG_HOST,
@@ -57,24 +63,59 @@ db.connect(err => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
 
+  app.use('/api/quiz', quizRoutes(db));
+app.use('/api/user', userRoutes(db));
+
 
   function generateOTP() {
-    return Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
+    return Math.floor(100000 + Math.random() * 900000).toString(); 
   }
 
   
   const transporter = nodemailer.createTransport({
-    service: 'smtp.gmail.com',
-    port:465,
-    secure:true, // Change to your email service
+    service: 'gmail', 
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
   });
 
+
+  const sendMail = async ({ to, subject, html }) => {
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to,
+      subject,
+      html,
+    };
   
-  passport.use(new LocalStrategy({
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log(`Email sent successfully to ${to}`);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      throw new Error('Email sending failed');
+    }
+  };
+ 
+
+
+  passport.use(
+    "google",
+    new GoogleStragy({
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret:process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL:"http:localhost:3000/auth/google",
+      userProfileURL:"https://www.googleapis.com/oath2/v3/userinfo",
+    },
+      async(accessToken , refreshToken ,profile, cb )=>{
+console.log(profile);
+    })
+  );
+
+  
+  passport.use("local",
+    new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
   }, async (email, password, done) => {
@@ -82,16 +123,16 @@ db.connect(err => {
       const result = await db.query("SELECT * FROM users WHERE email = $1", [email]);
   
       if (result.rows.length === 0) {
-        return done(null, false, { message: "User not found" });
+        return done(null, false, { message: "Invalid email or password." });
       }
   
       const user = result.rows[0];
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(password, user.hashed_password);
   
       if (isMatch) {
         return done(null, user);
       } else {
-        return done(null, false, { message: "Incorrect password" });
+        return done(null, false, { message: "Invalid email or password." });
       }
     } catch (err) {
       return done(err);
@@ -117,72 +158,83 @@ db.connect(err => {
   });
 
 
+  app.get("/auth/google", passport.authenticate("google" , {
+    scope:["profile" , "email"],
+  })
+);
+
+
 app.post('/signup', async (req, res) => {
-  const { email, password, username } = req.body;
+  const { email } = req.body;
 
   try {
-    // Check if user already exists
+    
     const checkResult = await db.query('SELECT * FROM users WHERE email = $1', [email]);
 
     if (checkResult.rows.length > 0) {
       return res.status(400).json({ message: 'User already exists. Please login.' });
     }
 
-    // Generate hashed password
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+  
+  
+    const currentotp = generateOTP();
+    const otpExpiresAt = new Date(Date.now() + otpExpiryTime).toISOString();
 
-    // Generate OTP and store in-memory or database (in-memory for simplicity here)
-    const otp = generateOTP();
-    const otpExpiresAt = Date.now() + otpExpiryTime;
+   
 
-    // Store OTP in a table for real-world apps (e.g., in-memory here for demo purposes)
-    // e.g., 'INSERT INTO otp_verification (email, otp, expiry_time) VALUES (...)'
-
-    // Send OTP email
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
+    await sendMail({
       to: email,
       subject: 'Email Verification for Signup',
-      text: `Hi ${username},\n\nYour OTP for signup is ${otp}. It will expire in 10 minutes.\n\nThank you!`,
-    };
+      html: `<p>Hi,</p>
+             <p>Your OTP for signup is <strong>${currentotp}</strong>. It will expire in 10 minutes.</p>
+             <p>Thank you!</p>`,
+    });
 
-    await transporter.sendMail(mailOptions);
-
-    // Insert user into the database but mark as unverified
-    const result = await db.query(
-      'INSERT INTO users (email, username, hashed_password, is_verified) VALUES ($1, $2, $3, $4) RETURNING *',
-      [email, username, hashedPassword, false]
+    await db.query(
+      "INSERT INTO otp_store (email, otp, expires_at) VALUES ($1, $2, $3) ON CONFLICT (email) DO UPDATE SET otp = $2, expires_at = $3",
+      [email, currentotp, otpExpiresAt]
     );
+     
+   
 
-    res.status(201).json({ message: 'Signup successful. Verify email to complete.', otpExpiresAt }); // Remove OTP in prod
+    res.status(201).json({ message:'otp send successfully', otpExpiresAt }); 
   } catch (err) {
     console.error('Unexpected error:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
 
-// POST /verify-otp endpoint
+
 app.post('/verify-otp', async (req, res) => {
-  const { email, otp } = req.body;
+  const { email, otp , username , password } = req.body;
+
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
 
   try {
-    // Fetch the stored OTP and expiry (mocking in-memory storage here)
-    // Real-world apps will query OTP data from a database table
-    // Example: `SELECT * FROM otp_verification WHERE email = $1`
-
-    const storedOtp = 'mocked-otp'; // Replace with actual fetched OTP
-    const storedOtpExpiry = Date.now() + otpExpiryTime; // Replace with actual expiry
-
-    if (!storedOtp || storedOtpExpiry < Date.now()) {
-      return res.status(400).json({ message: 'OTP expired or invalid.' });
+    
+    const otpResult = await db.query("SELECT otp, expires_at FROM otp_store WHERE email = $1", [email]);
+     
+    if (otpResult.rows.length === 0) {
+      return res.status(400).json({ message: "No OTP found for this email." });
     }
+
+   
+  
+    const { otp: storedOtp, expires_at: expiresAt } = otpResult.rows[0];
+  
 
     if (storedOtp !== otp) {
       return res.status(400).json({ message: 'Invalid OTP.' });
     }
 
-    // Mark user as verified
-    await db.query('UPDATE users SET is_verified = $1 WHERE email = $2', [true, email]);
+    if (new Date(expiresAt) < new Date()) {
+      return res.status(400).json({ message: "OTP expired." });
+    }
+
+    await db.query('INSERT INTO users (email, username, hashed_password) VALUES ($1, $2, $3) RETURNING *',
+      [email, username, hashedPassword]);
+
+      await db.query("DELETE FROM otp_store WHERE email = $1", [email]);
 
     res.status(200).json({ message: 'Email verified successfully.' });
   } catch (err) {
@@ -203,8 +255,8 @@ app.post('/verify-otp', async (req, res) => {
       req.logIn(user, (err) => {
         if (err) return next(err);
         console.log('user:', req.user);
-  
-        res.status(200).json({ message: "Login successful", user:req.user });
+        const { email, username } = req.user;
+        res.status(200).json({ message: "Login successful", user: { email, username }});
       });
     })(req, res, next);
   });

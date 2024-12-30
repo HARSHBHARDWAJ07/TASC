@@ -3,6 +3,7 @@ import { FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
+import GoogleAuth from '../Components/GoogleAuth'; 
 
 
 const Signin = () => {
@@ -15,7 +16,7 @@ const Signin = () => {
 
     try{
       const datas = await axios.post('http://localhost:4000/login' ,{email , password},{
-        withCredentials:true,
+        withCredentials:true,  
     });
       
       if (datas.status === 200) {
@@ -61,6 +62,9 @@ const Signin = () => {
     onChange={(e) => setPassword(e.target.value)}
     placeholder='password' required />
     <FaLock className='icon' />
+      </div>
+      <div className="google-login">
+       <GoogleAuth /> {/* Reusable GoogleAuth Component */}
       </div>
     <button type="submit">
       Login

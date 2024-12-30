@@ -3,6 +3,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import GoogleAuth from '../Components/GoogleAuth'; 
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
@@ -16,11 +17,11 @@ const SignUp = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:4000/signup', { username, email, password });
+            const response = await axios.post('http://localhost:4000/signup', {  email });
 
             if (response.status === 201) {
                 alert('Signup successful. Please verify the OTP sent to your email.');
-                setStep(2); // Move to OTP verification step
+                setStep(2);
             }
         } catch (error) {
             console.error('Error during registration:', error);
@@ -38,7 +39,7 @@ const SignUp = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:4000/verify-otp', { email, otp });
+            const response = await axios.post('http://localhost:4000/verify-otp', { email, otp,password, username });
 
             if (response.status === 200) {
                 alert('Email verified successfully!');
@@ -95,6 +96,9 @@ const SignUp = () => {
                         <FaLock className='icon' />
                     </div>
                     <button type="submit">Sign Up</button>
+                    <div className="google-login">
+                        <GoogleAuth /> {/* Reusable GoogleAuth Component */}
+                    </div>
                 </form>
             ) : (
                 <form onSubmit={handleVerifyOtp}>
