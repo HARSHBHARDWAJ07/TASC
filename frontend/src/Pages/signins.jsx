@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 import { FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import axios from "axios";
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from 'react-router-dom';
 import GoogleAuth from '../Components/GoogleAuth'; 
 
 
-const Signin = () => {
+const signins = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -80,4 +80,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default signins;

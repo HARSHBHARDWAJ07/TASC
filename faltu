@@ -147,3 +147,226 @@ function generateOTP() {
   };
 
   await transporter.sendMail(mailOptions);
+
+
+
+
+
+
+
+
+
+
+  function generateOTP() {
+    return Math.floor(100000 + Math.random() * 900000).toString(); 
+  }
+
+  
+  const transporter = nodemailer.createTransport({
+    service: 'gmail', 
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+
+  const sendMail = async ({ to, subject, html }) => {
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to,
+      subject,
+      html,
+    };
+  
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log(`Email sent successfully to ${to}`);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      throw new Error('Email sending failed');
+    }
+  };
+ 
+
+
+  passport.use(
+    "google",
+    new GoogleStragy({
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret:process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL:"http:localhost:3000/auth/google",
+      userProfileURL:"https://www.googleapis.com/oath2/v3/userinfo",
+    },
+      async(accessToken , refreshToken ,profile, cb )=>{
+console.log(profile);
+    })
+  );
+
+  
+  passport.use("local",
+    new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+  }, async (email, password, done) => {
+    try {
+      const result = await db.query("SELECT * FROM users WHERE email = $1", [email]);
+  
+      if (result.rows.length === 0) {
+        return done(null, false, { message: "User not found" });
+      }
+  
+      const user = result.rows[0];
+      const isMatch = await bcrypt.compare(password, user.password);
+  
+      if (isMatch) {
+        return done(null, user);
+      } else {
+        return done(null, false, { message: "Incorrect password" });
+      }
+    } catch (err) {
+      return done(err);
+    }
+  }));
+  
+  passport.serializeUser((user, done) => {
+    done(null, user.email); 
+  });
+  
+  passport.deserializeUser(async (email, done) => {
+    try {
+      const result = await db.query("SELECT * FROM users WHERE email = $1", [email]);
+  
+      if (result.rows.length > 0) {
+        done(null, result.rows[0]); 
+      } else {
+        done(new Error("User not found"), null);
+      }
+    } catch (err) {
+      done(err, null);
+    }
+  });
+
+
+  app.get("/auth/google", passport.authenticate("google" , {
+    scope:["profile" , "email"],
+  })
+);
+
+
+app.post('/signup', async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    
+    const checkResult = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+
+    if (checkResult.rows.length > 0) {
+      return res.status(400).json({ message: 'User already exists. Please login.' });
+    }
+
+  
+  
+    const currentotp = generateOTP();
+    const otpExpiresAt = Date.now() + otpExpiryTime;
+
+   
+
+    await sendMail({
+      to: email,
+      subject: 'Email Verification for Signup',
+      html: `<p>Hi,</p>
+             <p>Your OTP for signup is <strong>${currentotp}</strong>. It will expire in 10 minutes.</p>
+             <p>Thank you!</p>`,
+    });
+     
+   
+
+    res.status(201).json({ message:'otp send successfully', otpExpiresAt }); 
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+app.post('/verify-otp', async (req, res) => {
+  const { email, otp , username , password } = req.body;
+
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+  try {
+    
+    const storedOtpExpiry = Date.now() + otpExpiryTime;
+
+    if (!currentotp || storedOtpExpiry < Date.now()) {
+      return res.status(400).json({ message: 'OTP expired or invalid.' });
+    }
+
+    if (currentotp !== otp) {
+      return res.status(400).json({ message: 'Invalid OTP.' });
+    }
+
+    await db.query('INSERT INTO users (email, username, hashed_password) VALUES ($1, $2, $3) RETURNING *',
+      [email, username, hashedPassword]);
+
+    res.status(200).json({ message: 'Email verified successfully.' });
+  } catch (err) {
+    console.error('Unexpected error during verification:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+  
+  
+  
+  
+  app.post("/login", (req, res, next) => {
+    passport.authenticate("local", (err, user, info ) => {
+      if (err) return next(err);
+      if (!user) return res.status(400).json({ message: info.message });
+  
+      req.logIn(user, (err) => {
+        if (err) return next(err);
+        console.log('user:', req.user);
+  
+        res.status(200).json({ message: "Login successful", user:req.user });
+      });
+    })(req, res, next);
+  });
+  
+  app.get("/profile", async (req, res) => {
+    console.log("Session info:", req.session);
+    console.log("Is Authenticated:", req.isAuthenticated());
+    console.log("User:", req.user);
+  
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+     else {
+    const result = await db.query("SELECT * FROM users WHERE email = $1", [req.user.email]);
+      if (result.rows.length > 0) {
+        console.log('Authenticated user:', result.rows[0]);
+        return res.status(200).json({ user: result.rows[0], status: "ok" });
+      } else {
+        return res.status(404).json({ message: "User not found" });
+      }
+     }
+  });
+
+
+
+  import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+
+
+const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
