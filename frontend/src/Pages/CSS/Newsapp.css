@@ -1,0 +1,120 @@
+/* src/Components/Newsapp/Newsapp.css */
+/* Layout & Navbar */
+.news-app {
+    font-family: sans-serif;
+    max-width: 1600px;
+    align-items:center;
+    background: #fafafa;
+    border-radius: 8px;
+    overflow:hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  .navbar {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #2c3e50;
+    color: white;
+  }
+  .brand h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    margin-left: auto;
+  }
+  .nav-links li {
+    margin-left: 1.5rem;
+  }
+  .nav-item {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .nav-item:hover {
+    text-decoration: underline;
+  }
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+  }
+  .search-bar input {
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px 0 0 4px;
+    border: none;
+    outline: none;
+  }
+  .search-btn {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    background: #3498db;
+    color: white;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+  .search-btn:hover {
+    background: #2980b9;
+  }
+  
+  /* Main Content */
+  .main-content {
+    padding: 2rem;
+  }
+  .head {
+    margin-bottom: 1.5rem;
+    color: #34495e;
+  }
+  .category-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .category-btns button {
+    padding: 0.6rem 1rem;
+    border: none;
+    background: #e74c3c;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .category-btns button:hover {
+    background: #c0392b;
+  }
+  
+  /* Grid */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+    gap: 1.5rem;
+  }
+  
+  /* Loader */
+  .loading {
+    text-align: center;
+    padding: 2rem;
+  }
+  .loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  
+  /* Card hover effect */
+  .news-app:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  }
+  
