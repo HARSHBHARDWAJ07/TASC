@@ -25,7 +25,7 @@ const Newsapp = () => {
 
     try {
       const res = await fetch(
-        `https://newsapi.org/v2/everything?q=${encodeURIComponent(search)}&apiKey=${API_KEY}`
+        `https://api.thenewsapi.com/v1/news/headlines?locale=us&language=en&api_token=${API_KEY}&search=${encodeURIComponent(search)}`
       );
 
       const json = await res.json();
