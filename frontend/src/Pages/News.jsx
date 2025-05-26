@@ -8,7 +8,7 @@ const Newsapp = () => {
   const [search, setSearch] = useState('financial news')
   const [newsData, setNewsData] = useState([])
   const [loading, setLoading] = useState(false)
-  const API_KEY = '9c3ed8ee95884dec979460a60f96675b'
+  const API_KEY = process.env.API_KEY;
 
   const getData = useCallback(async () => {
     setLoading(true)
