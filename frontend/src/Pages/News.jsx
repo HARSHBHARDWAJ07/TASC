@@ -1,4 +1,5 @@
 // src/Components/Newsapp/Newsapp.jsx
+// src/Components/Newsapp/Newsapp.jsx
 import React, { useEffect, useState, useCallback } from 'react';
 import Card from '../Components/Cards/Card';
 import './CSS/Newsapp.css';
@@ -25,7 +26,7 @@ const Newsapp = () => {
 
     try {
       const res = await fetch(
-        `https://api.thenewsapi.com/v1/news/headlines?locale=us&language=en&api_token=${API_KEY}&search=${encodeURIComponent(search)}`
+        `https://newsapi.org/v2/everything?q=${encodeURIComponent(search)}&apiKey=${API_KEY}`
       );
 
       const json = await res.json();
