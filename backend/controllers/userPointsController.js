@@ -9,7 +9,7 @@ const pool = new Pool({
   port: 5432,
 });
 
-// Connect to the database
+
 pool.connect(err => {
   if (err) {
     console.error('Connection error', err.stack);
@@ -20,7 +20,6 @@ pool.connect(err => {
 
 
 
-// Fetch user's progress in all categories
 export const fetchUserProgress = async (req, res, next) => {
   const { userId } = req.query;
 
@@ -57,7 +56,7 @@ export const fetchUserProgress = async (req, res, next) => {
   }
 };
 
-// Update points for a user in a specific category
+
 export const updateUserCategoryPoints = async (req, res, next) => {
   const { userId, category, increment } = req.body;
 
@@ -66,23 +65,22 @@ export const updateUserCategoryPoints = async (req, res, next) => {
   }
 
   try {
-    const column = `category_${category}`; // Dynamically determine the column name
+    const column = `category_${category}`; 
 
-    // Check if the user already has a points entry
     const existingEntry = await pool.query(
       "SELECT * FROM user_points WHERE user_id = $1",
       [userId]
     );
 
     if (existingEntry.rows.length > 0) {
-      // Update the points for the specified category
+    
       const updatedPoints = await pool.query(
         `UPDATE user_points SET ${column} = LEAST(${column} + $1, 2) WHERE user_id = $2 RETURNING ${column}`,
         [increment, userId]
       );
       res.status(200).json({ success: true, points: updatedPoints.rows[0][column] });
     } else {
-      // Insert new entry with the initial points for the column
+     
       const insertQuery = `
         INSERT INTO user_points (user_id, ${column}) VALUES ($1, $2)
         RETURNING ${column}

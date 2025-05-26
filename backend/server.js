@@ -8,34 +8,49 @@ import session from "express-session";
 import bodyParser from "body-parser";import GoogleStragy from "passport-google-oauth2";
 import { Strategy as LocalStrategy } from "passport-local";
 import nodemailer from "nodemailer";
+import connectPgSimple from 'connect-pg-simple';
  import evaluateRoutes from "./routes/evaluateRoutes.js";
  import userPointsRoutes from "./routes/userPointsRoutes.js";
+
+
 
 const app = express();
 const port = 5000;
 const saltRounds = 10;
-const otpExpiryTime = 1000 * 60 * 1000;
-
+const pgSession = connectPgSimple(session);
 
 env.config();
 
-app.use(cors({
-    origin: ['http://localhost:3000','http://172.16.170.179:3000'],
-    credentials: true,
-  }));
-  
-  app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false,
-              httpOnly:true,
-              maxAge: 24*60*60*10000,
-     },
-  }));
 
-  app.use(passport.initialize());
-  app.use(passport.session());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(cors({
+  origin: ['https://knight-trade.onrender.com'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+
+app.set('trust proxy', 1)
+
+const PG = new pg.Client({
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT,
+});
+
+
+const pool = new pg.Pool({
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT,
+});
 
 
 
@@ -45,27 +60,100 @@ app.use((err, req, res, next) => {
   });
   
   
-  
-  const db = new pg.Client({
-    user: process.env.PG_USER,
-    host: process.env.PG_HOST,
-    database: process.env.PG_DATABASE,
-    password: process.env.PG_PASSWORD,
-    port: process.env.PG_PORT,
-  });
-  
-  
-  db.connect(err => {
-      if (err) {
-        console.error('Connection error', err.stack);
-      } else {
-        console.log('Connected to the database');
-      }
-    });
-    
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(bodyParser.json());
-  
+const initializeDatabase = async () => {
+  try {
+   await client.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        email VARCHAR(255) PRIMARY KEY,
+        username VARCHAR(255) NOT NULL,
+        hashed_password VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+
+      CREATE TABLE IF NOT EXISTS otp_store (
+        email VARCHAR(255) PRIMARY KEY,
+        otp VARCHAR(6) NOT NULL,
+        expires_at TIMESTAMP NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS user_points (
+        user_id VARCHAR(255) REFERENCES users(email),
+        category_saving INT DEFAULT 0,
+        category_taxes INT DEFAULT 0,
+        category_credit INT DEFAULT 0,
+        category_debtmanagement INT DEFAULT 0,
+        category_budgeting INT DEFAULT 0,
+        PRIMARY KEY (user_id)
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+      CREATE INDEX IF NOT EXISTS idx_otp_store_email ON otp_store(email);
+      CREATE INDEX IF NOT EXISTS idx_user_points_user ON user_points(user_id);
+   `);
+
+    await PG.query(`
+      CREATE TABLE IF NOT EXISTS user_sessions (
+        sid varchar NOT NULL PRIMARY KEY,
+        sess json NOT NULL,
+        expire timestamp(6) NOT NULL
+      );
+    `);
+
+    await PG.query(`
+      CREATE INDEX IF NOT EXISTS IDX_user_sessions_expire 
+      ON user_sessions (expire);
+    `);
+
+    console.log('Database tables initialized successfully');
+  } catch (error) {
+    console.error('Error initializing database:', error);
+    process.exit(1); 
+  }
+};
+
+
+
+PG.connect(async (err) => {
+  if (err) {
+    console.error('Connection error', err.stack);
+  } else {
+    console.log('Connected to the database');
+    await initializeDatabase(); 
+  }
+});
+pool.connect((err, client, release) => {
+  if (err) {
+    console.error('Error acquiring client', err.stack);
+  } else {
+    console.log('Connected to the database');
+    release();
+  }
+});
+
+
+app.use(session({
+  store: new pgSession({
+    pool: pool,
+    tableName: 'user_sessions',
+    createTableIfMissing: true
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  proxy: true,
+  cookie: {
+    secure: process.env.NODE_ENV === "production",
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000,
+    sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+  },
+}));
+
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
     
     app.use("/api", evaluateRoutes);
