@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import './CSS/Signup.css';
 import Illustation from '../Assets/ils.svg';
 import { Link, useNavigate } from "react-router-dom";
 
+// Add detailed API URL logging
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+console.log("Using API URL:", API_URL);
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +20,12 @@ const Signup = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // Log environment details for debugging
+  useEffect(() => {
+    console.log("Environment Variables:", process.env);
+    console.log("Current Environment:", process.env.NODE_ENV);
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -27,15 +35,35 @@ const Signup = () => {
     e.preventDefault();
     setError('');
     
-    // Validation
+    // Enhanced validation
     if (!formData.email || !formData.username || !formData.password) {
       setError('All fields are required');
       return;
     }
 
+    if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
     setLoading(true);
+    console.log("Sending signup request to:", `${API_URL}/signup`);
+    console.log("Request data:", formData);
+    
     try {
-      const response = await axios.post(`${API_URL}/signup`, formData);
+      const response = await axios.post(
+        `${API_URL}/signup`, 
+        formData,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          timeout: 10000  // 10 second timeout
+        }
+      );
+      
+      console.log("Signup response:", response);
+      
       if (response.status === 201) {
         alert('OTP sent to your email. Please verify.');
         setStep(2);
@@ -49,21 +77,32 @@ const Signup = () => {
 
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
-    if (!otp) {
-      setError('Please enter OTP');
+    if (!otp || otp.length !== 6) {
+      setError('Please enter a 6-digit OTP');
       return;
     }
 
     setLoading(true);
+    console.log("Sending OTP verification to:", `${API_URL}/verify-otp`);
+    console.log("Verification data:", { ...formData, otp });
+    
     try {
       const response = await axios.post(
         `${API_URL}/verify-otp`, 
-        { ...formData, otp }
+        { ...formData, otp },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          timeout: 10000
+        }
       );
+      
+      console.log("OTP verification response:", response);
       
       if (response.status === 200) {
         alert('Account verified successfully!');
-        navigate('/signin');  // Fixed navigation
+        navigate('/signin');
       }
     } catch (error) {
       handleApiError(error, 'Verification');
@@ -74,11 +113,21 @@ const Signup = () => {
 
   const handleResendOtp = async () => {
     setLoading(true);
+    console.log("Resending OTP to:", formData.email);
+    
     try {
       const response = await axios.post(
         `${API_URL}/resend-otp`, 
-        { email: formData.email }
+        { email: formData.email },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          timeout: 10000
+        }
       );
+      
+      console.log("Resend OTP response:", response);
       
       if (response.status === 200) {
         alert('New OTP sent to your email');
@@ -92,14 +141,32 @@ const Signup = () => {
 
   const handleApiError = (error, context) => {
     console.error(`${context} error:`, error);
+    
+    // Detailed error logging
     let message = 'An unexpected error occurred';
     
     if (error.response) {
-      message = error.response.data.message || error.response.statusText;
+      // Server responded with error status (4xx, 5xx)
+      console.error('Error response data:', error.response.data);
+      console.error('Error status:', error.response.status);
+      console.error('Error headers:', error.response.headers);
+      
+      message = error.response.data?.message || 
+               error.response.statusText || 
+               `Server responded with status ${error.response.status}`;
     } else if (error.request) {
-      message = 'No response from server';
+      // Request was made but no response received
+      console.error('No response received:', error.request);
+      message = 'No response from server. Check your network connection.';
     } else {
+      // Other errors
+      console.error('Request setup error:', error.message);
       message = error.message;
+    }
+    
+    // CORS specific check
+    if (message.includes('Network Error') || message.includes('Failed to fetch')) {
+      message += '. Possible CORS issue. Check backend configuration.';
     }
     
     setError(`${context} failed: ${message}`);
@@ -130,6 +197,7 @@ const Signup = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  autoComplete="email"
                 />
               </div>
               <div className="inputbox">
@@ -140,6 +208,7 @@ const Signup = () => {
                   value={formData.username}
                   onChange={handleChange}
                   required
+                  autoComplete="username"
                 />
               </div>
               <div className="inputbox">
@@ -151,6 +220,7 @@ const Signup = () => {
                   onChange={handleChange}
                   required
                   minLength={6}
+                  autoComplete="new-password"
                 />
               </div>
             </div>
@@ -176,6 +246,8 @@ const Signup = () => {
                   onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
                   pattern="\d{6}"
                   required
+                  autoComplete="one-time-code"
+                  inputMode="numeric"
                 />
               </div>
               
