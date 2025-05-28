@@ -35,7 +35,7 @@ app.use(cors({
 
 app.set('trust proxy', 1)
 
-const PG = new pg.Client({
+const db = new pg.Client({
   user: process.env.PG_USER,
   host: process.env.PG_HOST,
   database: process.env.PG_DATABASE,
