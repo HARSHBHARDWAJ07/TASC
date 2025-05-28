@@ -62,7 +62,7 @@ app.use((err, req, res, next) => {
   
 const initializeDatabase = async () => {
   try {
-   await client.query(`
+   await  db.query(`
       CREATE TABLE IF NOT EXISTS users (
         email VARCHAR(255) PRIMARY KEY,
         username VARCHAR(255) NOT NULL,
@@ -91,7 +91,7 @@ const initializeDatabase = async () => {
       CREATE INDEX IF NOT EXISTS idx_user_points_user ON user_points(user_id);
    `);
 
-    await PG.query(`
+    await db.query(`
       CREATE TABLE IF NOT EXISTS user_sessions (
         sid varchar NOT NULL PRIMARY KEY,
         sess json NOT NULL,
@@ -99,7 +99,7 @@ const initializeDatabase = async () => {
       );
     `);
 
-    await PG.query(`
+    await db.query(`
       CREATE INDEX IF NOT EXISTS IDX_user_sessions_expire 
       ON user_sessions (expire);
     `);
@@ -113,7 +113,7 @@ const initializeDatabase = async () => {
 
 
 
-PG.connect(async (err) => {
+db.connect(async (err) => {
   if (err) {
     console.error('Connection error', err.stack);
   } else {
