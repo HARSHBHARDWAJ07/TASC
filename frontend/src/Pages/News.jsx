@@ -1,17 +1,66 @@
-// src/Components/Newsapp/Newsapp.jsx
-// src/Components/Newsapp/Newsapp.jsx
 import React, { useEffect, useState, useCallback } from 'react';
 import Card from '../Components/Cards/Card';
 import './CSS/Newsapp.css';
 
 const Newsapp = () => {
-  const [search,    setSearch]    = useState('financial news');
+  const [search, setSearch] = useState('financial news');
   const [newsData, setNewsData] = useState([]);
-  const [loading,  setLoading]  = useState(false);
-  const [error,    setError]    = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [newsDatas] = useState(() => [
+    {
+      title: "Smart Investment Strategies for 2024",
+      urlToImage: "/financial-news1.jpg",
+      source: { name: "Finance Daily" },
+      description: "Explore the latest investment trends and portfolio management techniques...",
+      category: "financial news"
+    },
+     {
+      title: "Smart Investment Strategies for 2024",
+      urlToImage: "/financial-news1.jpg",
+      source: { name: "Finance Daily" },
+      description: "Explore the latest investment trends and portfolio management techniques...",
+      category: "financial news"
+    },
+     {
+      title: "Smart Investment Strategies for 2024",
+      urlToImage: "/financial-news1.jpg",
+      source: { name: "Finance Daily" },
+      description: "Explore the latest investment trends and portfolio management techniques...",
+      category: "financial news"
+    },
+    {
+      title: "Effective Debt Management Solutions",
+      urlToImage: "/debt-management.jpg",
+      source: { name: "Money Matters" },
+      description: "Learn how to prioritize and pay off high-interest debts efficiently...",
+      category: "debt management"
+    },
+    {
+      title: "Improving Your Credit Score Basics",
+      urlToImage: "/credit-score.jpg",
+      source: { name: "Credit Weekly" },
+      description: "Essential tips for maintaining and improving your credit health...",
+      category: "credit scores"
+    },
+    // Add 7 more demo articles with different categories
+    {
+      title: "Budget Planning Essentials",
+      urlToImage: "/budgeting.jpg",
+      source: { name: "Personal Finance" },
+      description: "Step-by-step guide to creating an effective monthly budget...",
+      category: "budgeting"
+    },
+    {
+      title: "Tax Saving Investments Guide",
+      urlToImage: "/taxes.jpg",
+      source: { name: "Tax Today" },
+      description: "Best investment options for tax saving in the current fiscal year...",
+      category: "taxes"
+    }
+  ]);
 
-  // NOTE: CRA only exposes env-vars prefixed with REACT_APP_
-  const API_KEY = process.env.REACT_APP_NEWS_API_KEY;
+  const API_KEY = process.env.REACT_APP_NEWS_API_KEY; 
 
   const getData = useCallback(async () => {
     setLoading(true);
@@ -53,10 +102,20 @@ const Newsapp = () => {
     setSearch(category);
   };
 
+   const filteredArticles = newsDatas.filter(article => 
+    article.urlToImage && 
+    article.title && 
+    article.category.toLowerCase() === search.toLowerCase()
+  );
+
   return (
     <div className="news-app">
       <main className="main-content">
-        <h2 className="head">Stay Updated with News</h2>
+        <h2 className="head">Stay Informed with Financial Intelligence</h2>
+
+        <div className="api-key-note">
+          <p>🔑 <strong>Demo Notice:</strong> This portfolio site uses a placeholder API key for demonstration. Live news functionality is disabled in production to preserve key integrity. For full experience, please clone the repo and run it locally using your own <code>REACT_APP_NEWS_API_KEY</code>.</p>
+        </div>
 
         <div className="category-btns">
           {['investment and saving', 'debt management', 'credit scores', 'budgeting', 'taxes']
@@ -70,20 +129,45 @@ const Newsapp = () => {
         {loading && (
           <div className="loading">
             <div className="loader" />
-            <p>Loading latest news…</p>
+            <p>Curating Financial Insights…</p>
           </div>
         )}
 
         {error && (
           <div className="error">
-            <p>Error: {error}</p>
+            <p>Data Retrieval Error: {error}</p>
           </div>
         )}
 
         {!loading && !error && (
-          <div className="news-grid">
-            <Card data={newsData} />
-          </div>
+          <>
+            {filteredArticles.length > 0 && (
+              <div className="featured-carousel">
+                <h3 className="carousel-heading">Featured Insights</h3>
+                <div className="carousel-container">
+                  {filteredArticles.map((article, index) => (
+                    <figure key={index} className="carousel-item">
+                      <img 
+                        src={article.urlToImage} 
+                        alt={article.title}
+                        onError={(e) => {
+                          e.target.src = '/placeholder-news.jpg';
+                        }}
+                      />
+                      <figcaption className="carousel-caption">
+                        <h4>{article.title.split(' - ')[0]}</h4>
+                        <p>{article.source.name}</p>
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="news-grid">
+              <Card data={newsData} />
+            </div>
+          </>
         )}
       </main>
     </div>
@@ -91,3 +175,4 @@ const Newsapp = () => {
 };
 
 export default Newsapp;
+
