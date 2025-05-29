@@ -45,7 +45,7 @@ const handleVerifyOtp = async (e) => {
     e.preventDefault();
 
     try {
-        const response = await axios.post('http://localhost:5000/verify-otp', { email, otp,password, username });
+        const response = await axios.post(`${API_URL}/verify-otp`, { email, otp,password, username });
 
         if (response.status === 200) {
             alert('Email verified successfully!');
