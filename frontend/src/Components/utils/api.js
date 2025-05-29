@@ -25,7 +25,7 @@ export const evaluateAnswer = async (question,
       financial_situation: financialSituation,
       answer,
     });
-    const response = await axios.post("http://localhost:5000/api/evaluate", {
+    const response = await axios.post(`${API_URL}/api/evaluate`, {
       question: question?.trim(), // Ensure all inputs are sanitized
       financial_situation: financialSituation?.trim(),
       answer: answer?.trim(),
