@@ -273,7 +273,7 @@ app.use(bodyParser.json());
       }
   
     
-    
+      const otpExpiryTime = 10 * 60 * 1000;
       const currentotp = generateOTP();
       const otpExpiresAt = new Date(Date.now() + otpExpiryTime).toISOString();
   
