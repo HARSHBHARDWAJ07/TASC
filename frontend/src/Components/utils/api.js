@@ -1,10 +1,11 @@
 import axios from "axios";
 
 
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const fetchQuestions = async (category, difficulty) => {
  try{
-  const response = await axios.get("http://localhost:5000/api/questions", {
+  const response = await axios.get(`${API_URL}/api/questions`, {
     params: { category, difficulty },
   });
   return response.data;
@@ -24,7 +25,7 @@ export const evaluateAnswer = async (question,
       financial_situation: financialSituation,
       answer,
     });
-    const response = await axios.post("http://localhost:5000/api/evaluate", {
+    const response = await axios.post(`${API_URL}/api/evaluate`, {
       question: question?.trim(), // Ensure all inputs are sanitized
       financial_situation: financialSituation?.trim(),
       answer: answer?.trim(),

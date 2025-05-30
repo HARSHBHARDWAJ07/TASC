@@ -93,7 +93,7 @@ const Game = () => {
 
         try {
           // Make sure this URL matches your backend configuration.
-          await fetch(`http://localhost:5000/api/questions/updatePoints`, {
+          await fetch(`{API_URL}/api/questions/updatePoints`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ points: 1 }),
