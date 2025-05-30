@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(cors({
-  origin: ['https://knight-trade.onrender.com'],
+  origin: ['https://tasc-so9j.onrender.com'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
