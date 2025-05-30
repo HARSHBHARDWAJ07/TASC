@@ -358,10 +358,8 @@ const Newsapp = () => {
     setSearch(category);
   };
 
-   const filteredArticles = newsDatas.filter(article => 
-    article.urlToImage && 
-    article.title && 
-    article.category.toLowerCase() === search.toLowerCase()
+    const filteredArticles = newsDatas.filter(
+    article => article.urlToImage && article.title && article.category.toLowerCase() === search.toLowerCase()
   );
 
   return (
@@ -395,7 +393,7 @@ const Newsapp = () => {
           </div>
         )}
 
-        {!loading && !error && (
+        {!loading && error && (
           <>
             {filteredArticles.length > 0 && (
               <div className="featured-carousel">
@@ -407,7 +405,7 @@ const Newsapp = () => {
                         src={article.urlToImage} 
                         alt={article.title}
                         onError={(e) => {
-                          e.target.src = '/placeholder-news.jpg';
+                          e.target.src = '/placeholder-news.jpeg';
                         }}
                       />
                       <figcaption className="carousel-caption">
@@ -431,6 +429,4 @@ const Newsapp = () => {
 };
 
 export default Newsapp;
-
-
 
