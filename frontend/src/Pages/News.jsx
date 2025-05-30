@@ -62,21 +62,21 @@ const Newsapp = () => {
       // Budgeting articles (7)
       {
         title: "Zero-Based Budgeting: Every Dollar Accounted For",
-        urlToImage: "/Images/budget1.jpeg",
+        urlToImage: "/Images/budgeting1.jpeg",
         source: { name: "BudgetMaster" },
         description: "Allocate every dollar of your income intentionally to maximize savings and control spending.",
         category: "budgeting"
       },
       {
         title: "Envelope System: Cash-Only Spending Control",
-        urlToImage: "/Images/budget2.jpeg",
+        urlToImage: "/Images/budgeting2.jpeg",
         source: { name: "Frugal Living" },
         description: "Divide your cash into envelopes per expense category to avoid overspending and stay on track.",
         category: "budgeting"
       },
       {
         title: "50/30/20 Rule: Simple Budget Framework",
-        urlToImage: "/Images/budget3.jpeg",
+        urlToImage: "/Images/budgeting3.jpeg",
         source: { name: "Smart Finance" },
         description: "Balance needs, wants, and savings by allocating 50%, 30%, and 20% of your income respectively.",
         category: "budgeting"
@@ -90,21 +90,21 @@ const Newsapp = () => {
       },
       {
         title: "Annual Budget Planning: Looking Ahead",
-        urlToImage: "/Images/budget5.jpeg",
+        urlToImage: "/Images/budgeting5.jpeg",
         source: { name: "Financial Planner" },
         description: "Forecast income and expenses for the year to prepare for seasonal costs and big goals.",
         category: "budgeting"
       },
       {
         title: "Variable vs. Fixed Expenses: Finding Balance",
-        urlToImage: "/Images/budget6.jpeg",
+        urlToImage: "/Images/budgeting6.jpeg",
         source: { name: "Money Matters" },
         description: "Identify which costs fluctuate versus those that stay constant to improve flexibility and savings.",
         category: "budgeting"
       },
       {
         title: "Budget Review Rituals: Monthly Check-Ins",
-        urlToImage: "/Images/budget7.jpeg",
+        urlToImage: "/Images/budgeting7.jpeg",
         source: { name: "Personal Finance Pro" },
         description: "Establish a monthly review process to adjust allocations, reflect on goals, and celebrate progress.",
         category: "budgeting"
@@ -215,49 +215,49 @@ const Newsapp = () => {
       // Investment and Saving articles (7)
       {
         title: "Maximizing Returns with High-Yield Savings Accounts",
-        urlToImage: "/Images/investment1.jpeg",
+        urlToImage: "/Images/investmentandsaving1.jpeg",
         source: { name: "Savings Weekly" },
         description: "Discover top high-yield savings options to grow your emergency fund with minimal risk.",
         category: "investment and saving"
       },
       {
         title: "Building Wealth with Index Fund Investing",
-        urlToImage: "/Images/investment2.jpeg",
+        urlToImage: "/Images/Investmentandsaving2.jpeg",
         source: { name: "Market Insights" },
         description: "Learn how low-cost index funds can deliver broad market exposure and consistent returns over time.",
         category: "investment and saving"
       },
       {
         title: "Robo-Advisors: Automated Portfolio Management",
-        urlToImage: "/Images/investment3.jpeg",
+        urlToImage: "/Images/Investmentandsaving3.jpeg",
         source: { name: "FinTech Today" },
         description: "Explore how robo-advisors tailor diversified portfolios based on your risk profile and goals.",
         category: "investment and saving"
       },
       {
         title: "Tax-Advantaged Retirement Accounts Explained",
-        urlToImage: "/Images/investment4.jpeg",
+        urlToImage: "/Images/Investmentandsaving4.jpeg",
         source: { name: "Retirement Review" },
         description: "Understand IRA, 401(k), and Roth options to maximize your tax benefits and retirement savings.",
         category: "investment and saving"
       },
       {
         title: "Emergency Fund Strategies for Financial Security",
-        urlToImage: "/Images/investment5.jpeg",
+        urlToImage: "/Images/Investmentandsaving5.jpeg",
         source: { name: "Personal Finance Pro" },
         description: "Step-by-step guide to establishing a 3–6 month expense fund for peace of mind.",
         category: "investment and saving"
       },
       {
         title: "Diversifying with Bond and Fixed-Income Funds",
-        urlToImage: "/Images/investment6.jpeg",
+        urlToImage: "/Images/Investmentandsaving6.jpeg",
         source: { name: "Income Strategies Journal" },
         description: "Learn how bonds and fixed-income ETFs can stabilize your portfolio during market swings.",
         category: "investment and saving"
       },
       {
         title: "Dollar-Cost Averaging for Long-Term Growth",
-        urlToImage: "/Images/investment7.jpeg",
+        urlToImage: "/Images/Investmentandsaving7.jpeg",
         source: { name: "Investor’s Edge" },
         description: "Implement a disciplined investing approach by regularly buying fixed-dollar amounts of assets.",
         category: "investment and saving"
