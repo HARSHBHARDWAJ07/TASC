@@ -38,13 +38,6 @@ const Newsapp = () => {
         category: "taxes"
       },
       {
-        title: "Tax Credits vs. Deductions: What You Need to Know",
-        urlToImage: "/Images/tax5.jpeg",
-        source: { name: "Finance Fundamentals" },
-        description: "Understand the difference between credits and deductions and how each affects your final bill.",
-        category: "taxes"
-      },
-      {
         title: "Estate Planning: Minimizing Inheritance Tax",
         urlToImage: "/Images/tax6.jpeg",
         source: { name: "Wealth Management Weekly" },
@@ -69,28 +62,28 @@ const Newsapp = () => {
       },
       {
         title: "Envelope System: Cash-Only Spending Control",
-        urlToImage: "/Images/budgeting2.jpeg",
+        urlToImage: "/Images/budeting2.jpeg",
         source: { name: "Frugal Living" },
         description: "Divide your cash into envelopes per expense category to avoid overspending and stay on track.",
         category: "budgeting"
       },
       {
         title: "50/30/20 Rule: Simple Budget Framework",
-        urlToImage: "/Images/budgeting3.jpeg",
+        urlToImage: "/Images/budgetingg2.jpeg",
         source: { name: "Smart Finance" },
         description: "Balance needs, wants, and savings by allocating 50%, 30%, and 20% of your income respectively.",
         category: "budgeting"
       },
       {
         title: "Automated Budgeting with Apps and Tools",
-        urlToImage: "/Images/budget4.jpeg",
+        urlToImage: "/Images/budgeting4.jpeg",
         source: { name: "FinTech Review" },
         description: "Leverage modern apps to track spending, set limits, and receive real-time alerts for better discipline.",
         category: "budgeting"
       },
       {
         title: "Annual Budget Planning: Looking Ahead",
-        urlToImage: "/Images/budgeting5.jpeg",
+        urlToImage: "/Images/budgeting5.png",
         source: { name: "Financial Planner" },
         description: "Forecast income and expenses for the year to prepare for seasonal costs and big goals.",
         category: "budgeting"
@@ -215,49 +208,49 @@ const Newsapp = () => {
       // Investment and Saving articles (7)
       {
         title: "Maximizing Returns with High-Yield Savings Accounts",
-        urlToImage: "/Images/investmentandsaving1.jpeg",
+        urlToImage: "/Images/investmentAndSaving1.jpeg",
         source: { name: "Savings Weekly" },
         description: "Discover top high-yield savings options to grow your emergency fund with minimal risk.",
         category: "investment and saving"
       },
       {
         title: "Building Wealth with Index Fund Investing",
-        urlToImage: "/Images/Investmentandsaving2.jpeg",
+        urlToImage: "/Images/InvestmentAndSaving2.jpeg",
         source: { name: "Market Insights" },
         description: "Learn how low-cost index funds can deliver broad market exposure and consistent returns over time.",
         category: "investment and saving"
       },
       {
         title: "Robo-Advisors: Automated Portfolio Management",
-        urlToImage: "/Images/Investmentandsaving3.jpeg",
+        urlToImage: "/Images/InvestmentAndSaving3.png",
         source: { name: "FinTech Today" },
         description: "Explore how robo-advisors tailor diversified portfolios based on your risk profile and goals.",
         category: "investment and saving"
       },
       {
         title: "Tax-Advantaged Retirement Accounts Explained",
-        urlToImage: "/Images/Investmentandsaving4.jpeg",
+        urlToImage: "/Images/InvestmentAndSaving4.jpeg",
         source: { name: "Retirement Review" },
         description: "Understand IRA, 401(k), and Roth options to maximize your tax benefits and retirement savings.",
         category: "investment and saving"
       },
       {
         title: "Emergency Fund Strategies for Financial Security",
-        urlToImage: "/Images/Investmentandsaving5.jpeg",
+        urlToImage: "/Images/InvestmentandSaving5.jpeg",
         source: { name: "Personal Finance Pro" },
         description: "Step-by-step guide to establishing a 3–6 month expense fund for peace of mind.",
         category: "investment and saving"
       },
       {
         title: "Diversifying with Bond and Fixed-Income Funds",
-        urlToImage: "/Images/Investmentandsaving6.jpeg",
+        urlToImage: "/Images/InvestmentAndSaving6.jpeg",
         source: { name: "Income Strategies Journal" },
         description: "Learn how bonds and fixed-income ETFs can stabilize your portfolio during market swings.",
         category: "investment and saving"
       },
       {
         title: "Dollar-Cost Averaging for Long-Term Growth",
-        urlToImage: "/Images/Investmentandsaving7.jpeg",
+        urlToImage: "/Images/InvestmentAndSaving7.jpeg",
         source: { name: "Investor’s Edge" },
         description: "Implement a disciplined investing approach by regularly buying fixed-dollar amounts of assets.",
         category: "investment and saving"
@@ -297,13 +290,6 @@ const Newsapp = () => {
         urlToImage: "/Images/financialnews5.jpeg",
         source: { name: "Reuters" },
         description: "U.S. corporate profits fell by $118.1 billion in Q1 after inventory valuation and capital consumption adjustments, signaling headwinds for growth.",
-        category: "financial news"
-      },
-      {
-        title: "Global Government Issuance of U.S. Dollar Debt Tumbling in 2025",
-        urlToImage: "/Images/financialnews6.jpeg",
-        source: { name: "Reuters" },
-        description: "Non-U.S. sovereign issuance of dollar bonds dropped 19% to $86.2 billion in the first five months of 2025, the first decline in three years.",
         category: "financial news"
       },
       {
