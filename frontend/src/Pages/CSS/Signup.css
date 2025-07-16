@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ }
+ 
+ .signin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding-right: 20px;
+    background-color: #f5f5f5;
+ }
+ 
+ .form-container {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .main-text {
+    color: #000;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+ }
+ 
+ .frame9 {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+ }
+ 
+ .frame9 hr {
+    flex: 1;
+    border: none;
+    border-top: 2px dashed #000;
+ }
+ 
+ .or {
+    color: #A3A3A3;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 1rem;
+ }
+ 
+ .frame4 {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+ }
+
+ 
+ 
+ .inputbox {
+    width: 100%;
+ }
+ 
+ .inputbox input {
+    width: 100%;
+    padding: 0.875rem 1.875rem;
+    border: 1px solid #000;
+    border-radius: 0.75rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #A3A3A3;
+ }
+ 
+ .button1 {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    border: none;
+    border-radius: 0.75rem;
+    background: #68E1FD;
+    color: #231F20;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+ }
+ 
+ .signin-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.875rem;
+ }
+ 
+ .signin-nav p {
+    margin-right: 0.5rem;
+ }
+ 
+ .signin-nav a {
+    color: #68E1FD;
+    text-decoration: none;
+    font-weight: 600;
+ }
+ 
+ .illustration-container {
+    display: none; /* Hide illustration on smaller screens */
+ }
+ 
+
+/* Add these new styles to your existing Signup.css */
+
+/* OTP Verification Step */
+.otp-container {
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+   margin-top: 2rem;
+ }
+ 
+ .otp-container h1 {
+   color: #231F20;
+   font-family: 'Poppins', sans-serif;
+   font-size: 1.5rem;
+   font-weight: 600;
+   text-align: center;
+ }
+ 
+ .otp-input-container {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+ }
+ 
+ .otp-input-container input {
+   width: 100%;
+   padding: 0.875rem 1.875rem;
+   border: 1px solid #231F20;
+   border-radius: 0.75rem;
+   font-family: 'Poppins', sans-serif;
+   font-size: 1rem;
+   font-weight: 600;
+   color: #231F20;
+   text-align: center;
+   letter-spacing: 2px;
+ }
+ 
+ .otp-input-container input:focus {
+   outline: 2px solid #68E1FD;
+   border-color: transparent;
+ }
+ 
+ .resend-otp {
+   text-align: center;
+   font-family: 'Poppins', sans-serif;
+   font-size: 0.875rem;
+   color: #A3A3A3;
+ }
+ 
+ .resend-otp button {
+   background: none;
+   border: none;
+   color: #68E1FD;
+   font-weight: 600;
+   cursor: pointer;
+   margin-left: 0.5rem;
+ }
+ 
+ /* Modify the existing button style for OTP step */
+ .otp-container .button1 {
+   background: #68E1FD;
+   margin-top: 1rem;
+ }
+
+
+ @media (min-width: 768px) {
+    .signin-container {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+ 
+    .illustration-container {
+        display: block;
+        max-width: 50%;
+    }
+ 
+    .illustration-container img {
+        width: 100%;
+        height: auto;
+    }
+ }

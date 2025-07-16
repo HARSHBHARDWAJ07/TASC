@@ -1,0 +1,1071 @@
+{"category":{"investment and saving":{
+    "difficulty_levels": {
+      "easy": [
+        {
+          "scenario": 1,
+          "financial_situation": "You are a 28-year-old with a stable job earning ₹60,000 per month. You have no debt and live with roommates, splitting rent and utilities. You have an emergency fund of ₹3,00,000 in a savings account.",
+          "question": "What are some short-term financial goals you could set with your current income and savings?"
+        },
+        {
+          "scenario": 2,
+          "financial_situation": "You are a 35-year-old with a spouse and two young children. You earn ₹80,000 per month, and your spouse earns ₹50,000 per month. You have a mortgage, car loans, and student loans. You have an emergency fund of ₹1,00,000 in a savings account.",
+          "question": "How can you prioritize debt repayment while still saving for your children's education?"
+        },
+        {
+          "scenario": 3,
+          "financial_situation": "You are a 25-year-old recent graduate with a starting salary of ₹35,000 per month. You live with your parents and have no debt. You have no savings.",
+          "question": "What are the first steps you should take to build a strong financial foundation?"
+        },
+        {
+          "scenario": 4,
+          "financial_situation": "You are a 40-year-old self-employed individual with an irregular income. You have health insurance but no other significant savings or investments.",
+          "question": "How can you create a budget and savings plan despite your fluctuating income?"
+        },
+        {
+          "scenario": 5,
+          "financial_situation": "You are a 55-year-old with a stable job and a pension plan. You have a paid-off mortgage and minimal debt. You have ₹10,00,000 in retirement savings.",
+          "question": "How can you adjust your investment strategy as you approach retirement age?"
+        },
+        {
+          "scenario": 6,
+          "financial_situation": "You are a 22-year-old college student with part-time job earnings of ₹15,000 per month. You live with your parents and have no major expenses. You have no savings.",
+          "question": "How can you maximize your savings while in college, considering your limited income and potential for increased earnings after graduation?"
+        },
+        {
+          "scenario": 7,
+          "financial_situation": "You are a 30-year-old with a stable job earning ₹70,000 per month. You have a spouse who is a homemaker. You have a mortgage, a car loan, and some credit card debt. You have an emergency fund of ₹50,000 in a savings account.",
+          "question": "How can you reduce your debt and build a stronger financial safety net while planning for potential future income changes, such as a career change or having children?"
+        },
+        {
+          "scenario": 8,
+          "financial_situation": "You are a 45-year-old with a stable job and a 401(k) retirement plan through your employer. You have a paid-off mortgage and minimal debt. You have ₹5,00,000 in retirement savings.",
+          "question": "How can you optimize your 401(k) contributions and investment choices to maximize your retirement savings growth?"
+        },
+        {
+          "scenario": 9,
+          "financial_situation": "You are a 60-year-old retiree with a pension and Social Security income. You have a paid-off home and minimal debt. You have ₹20,00,000 in retirement savings.",
+          "question": "How can you create a sustainable retirement withdrawal strategy to ensure your savings last throughout your retirement years, while also accounting for potential healthcare costs and inflation?"
+        },
+        {
+          "scenario": 10,
+          "financial_situation": "You are a 50-year-old business owner with a fluctuating income. You have health insurance and a small business retirement plan. You have an emergency fund of ₹1,00,000 in a savings account.",
+          "question": "How can you manage your finances effectively as a business owner, considering the inherent risks and uncertainties associated with self-employment?"
+        }
+      ],
+      "medium": [
+        {
+          "scenario": 11,
+          "financial_situation": "You are a 32-year-old with a stable job earning ₹80,000 per month. You have a spouse who also works and earns ₹60,000 per month. You have a mortgage, a car loan, and some student loan debt. You have an emergency fund of ₹6,00,000 in a savings account and ₹4,00,000 invested in a balanced mutual fund.",
+          "question": "You are considering purchasing a second property as a rental investment. How would this decision impact your current financial goals, such as retirement savings and debt repayment? What factors should you consider before making this investment?"
+        },
+        {
+          "scenario": 12,
+          "financial_situation": "You are a 40-year-old self-employed individual with a fluctuating income. You have health insurance and a small business retirement plan. You have an emergency fund of ₹1,00,000 in a savings account and ₹2,00,000 invested in a high-yield savings account.",
+          "question": "How can you optimize your tax strategy as a self-employed individual to minimize your tax liability and maximize your after-tax income and savings?"
+        },
+        {
+          "scenario": 13,
+          "financial_situation": "You are a 28-year-old with a stable job earning ₹60,000 per month. You have no debt and live with roommates, splitting rent and utilities. You have an emergency fund of ₹3,00,000 in a savings account and ₹1,00,000 invested in a growth stock mutual fund.",
+          "question": "You are considering investing in the stock market. How can you diversify your investment portfolio to manage risk and potentially increase your returns? What factors should you consider when selecting individual stocks or mutual funds?"
+        },
+        {
+          "scenario": 14,
+          "financial_situation": "You are a 35-year-old with a spouse and two young children. You earn ₹80,000 per month, and your spouse earns ₹50,000 per month. You have a mortgage, car loans, and student loans. You have an emergency fund of ₹1,00,000 in a savings account and ₹5,00,000 invested in a mix of bonds and mutual funds.",
+          "question": "You are considering purchasing life insurance. What type of life insurance policy would be most appropriate for your family's needs and financial situation? How much coverage should you consider?"
+        },
+        {
+          "scenario": 15,
+          "financial_situation": "You are a 55-year-old with a stable job and a pension plan. You have a paid-off mortgage and minimal debt. You have ₹10,00,000 in retirement savings invested in a mix of stocks and bonds.",
+          "question": "You are considering retiring early. How can you estimate your retirement income needs and determine if you can afford to retire early while maintaining your desired lifestyle? What factors should you consider when making this decision?"
+        },
+        {
+          "scenario": 16,
+          "financial_situation": "You are a 25-year-old recent graduate with a starting salary of ₹35,000 per month. You live with your parents and have no debt. You have no savings.",
+          "question": "You are considering taking on credit card debt to finance a large purchase, such as a new car or a vacation. What are the potential risks and benefits of using credit cards? How can you use credit cards responsibly to build a good credit history?"
+        },
+        {
+          "scenario": 17,
+          "financial_situation": "You are a 40-year-old self-employed individual with an irregular income. You have health insurance but no other significant savings or investments.",
+          "question": "You are considering starting a side business to supplement your income. How can you develop a business plan and financial projections for your side business? What are the potential risks and rewards of starting a side business?"
+        },
+        {
+          "scenario": 18,
+          "financial_situation": "You are a 60-year-old retiree with a pension and Social Security income. You have a paid-off home and minimal debt. You have ₹20,00,000 in retirement savings invested in a mix of stocks, bonds, and CDs.",
+          "question": "You are considering downsizing your home to a smaller, more affordable property. How could downsizing impact your retirement finances? What factors should you consider when making this decision?"
+        },
+        {
+          "scenario": 19,
+          "financial_situation": "You are a 50-year-old business owner with a fluctuating income. You have health insurance and a small business retirement plan. You have an emergency fund of ₹1,00,000 in a savings account and ₹5,00,000 invested in a mix of stocks and bonds.",
+          "question": "You are considering selling your business and retiring early. How can you value your business and determine a fair selling price? What are the tax implications of selling your business?"
+        },
+        {
+          "scenario": 20,
+          "financial_situation": "You are a 30-year-old with a stable job earning ₹70,000 per month. You have a spouse who is a homemaker. You have a mortgage, a car loan, and some credit card debt. You have an emergency fund of ₹50,000 in a savings account and ₹2,00,000 invested in a balanced mutual fund.",
+          "question": "Your spouse is considering returning to the workforce. How would her re-entry into the workforce impact your family's finances? What are the potential financial benefits and challenges of having two incomes?"
+        }
+      ],
+      "hard": [
+        {
+          "scenario": 21,
+          "financial_situation": "You are a 42-year-old high-earning executive with a complex financial portfolio including stocks, bonds, real estate, and a private business. You have a high-net-worth and are concerned about estate planning and wealth preservation for your family.",
+          "question": "How can you minimize estate taxes and ensure a smooth transition of wealth to your heirs while maintaining control and liquidity during your lifetime? Consider strategies such as trusts, charitable giving, and family limited partnerships."
+        },
+        {
+          "scenario": 22,
+          "financial_situation": "You are a 38-year-old entrepreneur who recently sold your successful startup for a significant sum. You have substantial liquid assets and are exploring high-growth investment opportunities.",
+          "question": "How can you diversify your investment portfolio beyond traditional asset classes, considering options such as venture capital, private equity, and alternative investments? What are the risks and potential rewards associated with these investments?"
+        },
+        {
+          "scenario": 23,
+          "financial_situation": "You are a 58-year-old physician with a high income and significant student loan debt. You are nearing retirement and concerned about the long-term implications of your debt on your retirement savings and lifestyle.",
+          "question": "How can you develop a debt repayment strategy that minimizes the impact on your retirement savings while considering factors such as income tax deductions, potential for income-driven repayment plans, and the possibility of refinancing your loans?"
+        },
+        {
+          "scenario": 24,
+          "financial_situation": "You are a 45-year-old with a stable job and a 401(k) retirement plan through your employer. You have a paid-off mortgage and minimal debt. You have ₹5,00,000 in retirement savings and are considering investing in cryptocurrency.",
+          "question": "Given the high volatility and regulatory uncertainty surrounding cryptocurrency, how can you incorporate cryptocurrency into your investment portfolio while managing risk and adhering to your overall financial goals? What are the potential tax implications of investing in cryptocurrency?"
+        },
+        {
+          "scenario": 25,
+          "financial_situation": "You are a 60-year-old retiree with a pension and Social Security income. You have a paid-off home and minimal debt. You have ₹20,00,000 in retirement savings and are concerned about the potential impact of inflation on your purchasing power.",
+          "question": "How can you adjust your retirement withdrawal strategy and investment portfolio to account for inflation and ensure that your savings maintain their purchasing power over the long term? Consider strategies such as investing in inflation-protected securities and adjusting your withdrawal rate annually for inflation."
+        },
+        {
+          "scenario": 26,
+          "financial_situation": "You are a 50-year-old business owner with a fluctuating income. You have health insurance and a small business retirement plan. You have an emergency fund of ₹1,00,000 in a savings account and ₹5,00,000 invested in a mix of stocks and bonds. You are considering purchasing long-term care insurance.",
+          "question": "Given the high cost of long-term care and the uncertainty of future healthcare needs, how can you determine if purchasing long-term care insurance is a wise financial decision for you and your family? What factors should you consider when evaluating different long-term care insurance policies?"
+        },
+        {
+          "scenario": 27,
+          "financial_situation": "You are a 30-year-old with a stable job earning ₹70,000 per month. You have a spouse who is a homemaker. You have a mortgage, a car loan, and some credit card debt. You have an emergency fund of ₹50,000 in a savings account and ₹2,00,000 invested in a balanced mutual fund. You are considering starting a family.",
+          "question": "How will having children impact your family's finances? What are the estimated costs of raising children, including childcare, education, and healthcare? How can you adjust your budget and savings plan to accommodate these additional expenses?"
+        },
+        {
+          "scenario": 28,
+          "financial_situation": "You are a 25-year-old recent graduate with a starting salary of ₹35,000 per month. You live with your parents and have no debt. You have no savings. You are considering pursuing a graduate degree to enhance your career prospects.",
+          "question": "How will pursuing a graduate degree impact your finances? What are the estimated costs of tuition, fees, and living expenses? How can you finance your education while minimizing student loan debt? What are the potential return on investment (ROI) of a graduate degree in your chosen field?"
+        },
+        {
+          "scenario": 29,
+          "financial_situation": "You are a 40-year-old self-employed individual with an irregular income. You have health insurance but no other significant savings or investments. You are considering purchasing disability insurance.",
+          "question": "How can you determine the appropriate level of disability insurance coverage for your needs? What factors should you consider when evaluating different disability insurance policies, such as the definition of disability, elimination period, and benefit period?"
+        },
+        {
+          "scenario": 30,
+          "financial_situation": "You are a 22-year-old college student with part-time job earnings of ₹15,000 per month. You live with your parents and have no major expenses. You have no savings. You are considering starting a small business while still in college.",
+          "question": "How can you develop a business plan and secure funding for your startup while balancing your academic commitments? What are the potential legal and financial risks associated with starting a business while still a student?"
+        }
+      ],
+      "impossible": [
+        {
+          "scenario": 31,
+          "financial_situation": "You are a 42-year-old high-earning executive with a complex financial portfolio including stocks, bonds, real estate, and a private business. You have a high-net-worth and are concerned about estate planning and wealth preservation for your family.",
+          "question": "How can you ethically and effectively mitigate the potential negative societal impacts of extreme wealth accumulation while ensuring the long-term financial security and well-being of your family? Consider factors such as philanthropy, social impact investing, and intergenerational wealth transfer strategies."
+        },
+        {
+          "scenario": 32,
+          "financial_situation": "You are a 38-year-old entrepreneur who recently sold your successful startup for a significant sum. You have substantial liquid assets and are exploring high-growth investment opportunities.",
+          "question": "How can you invest your wealth in a manner that aligns with your personal values and contributes to a more sustainable and equitable future? Consider factors such as environmental, social, and governance (ESG) criteria, impact investing, and supporting social enterprises."
+        },
+        {
+          "scenario": 33,
+          "financial_situation": "You are a 58-year-old physician with a high income and significant student loan debt. You are nearing retirement and concerned about the long-term implications of your debt on your retirement savings and lifestyle.",
+          "question": "How can you advocate for systemic changes in the higher education and student loan systems to address the growing student debt crisis and ensure equitable access to higher education for future generations?"
+        },
+        {
+          "scenario": 34,
+          "financial_situation": "You are a 45-year-old with a stable job and a 401(k) retirement plan through your employer. You have a paid-off mortgage and minimal debt. You have ₹5,00,000 in retirement savings and are considering investing in cryptocurrency.",
+          "question": "How can you navigate the evolving regulatory landscape of cryptocurrency and advocate for policies that promote responsible innovation and protect consumers while fostering economic growth?"
+        },
+        {
+          "scenario": 35,
+          "financial_situation": "You are a 60-year-old retiree with a pension and Social Security income. You have a paid-off home and minimal debt. You have ₹20,00,000 in retirement savings and are concerned about the potential impact of inflation on your purchasing power.",
+          "question": "How can you actively participate in the political process to advocate for policies that address inflation, promote economic stability, and ensure a secure and dignified retirement for all citizens?"
+        },
+        {
+          "scenario": 36,
+          "financial_situation": "You are a 50-year-old business owner with a fluctuating income. You have health insurance and a small business retirement plan. You have an emergency fund of ₹1,00,000 in a savings account and ₹5,00,000 invested in a mix of stocks and bonds. You are considering purchasing long-term care insurance.",
+          "question": "How can you advocate for a more equitable and affordable long-term care system that provides access to quality care for all individuals, regardless of their socioeconomic status?"
+        },
+        {
+          "scenario": 37,
+          "financial_situation": "You are a 30-year-old with a stable job earning ₹70,000 per month. You have a spouse who is a homemaker. You have a mortgage, a car loan, and some credit card debt. You have an emergency fund of ₹50,000 in a savings account and ₹2,00,000 invested in a balanced mutual fund. You are considering starting a family.",
+          "question": "How can you advocate for policies that support families with young children, such as affordable childcare, paid parental leave, and accessible healthcare, to ensure that all families have the opportunity to thrive?"
+        },
+        {
+          "scenario": 38,
+          "financial_situation": "You are a 25-year-old recent graduate with a starting salary of ₹35,000 per month. You live with your parents and have no debt. You have no savings. You are considering pursuing a graduate degree to enhance your career prospects.",
+          "question": "How can you advocate for policies that make higher education more affordable and accessible for all students, regardless of their socioeconomic background, and ensure that graduates are equipped with the skills and knowledge needed to succeed in the 21st-century workforce?"
+        },
+        {
+          "scenario": 39,
+          "financial_situation": "You are a 40-year-old self-employed individual with an irregular income. You have health insurance but no other significant savings or investments. You are considering purchasing disability insurance.",
+          "question": "How can you advocate for a more robust social safety net that provides adequate support for individuals with disabilities and ensures their economic security and well-being?"
+        },
+        {
+          "scenario": 40,
+          "financial_situation": "You are a 22-year-old college student with part-time job earnings of ₹15,000 per month. You live with your parents and have no major expenses. You have no savings. You are considering starting a small business while still in college.",
+          "question": "How can you leverage your entrepreneurial spirit and innovative ideas to address pressing social and environmental challenges, and create a more sustainable and equitable future for all?"
+        }
+      ]
+        }
+      
+  },
+
+
+  "Debt management": {
+  "difficulty_levels": {
+    "easy": [
+      {
+        "scenario": 1,
+        "financial_situation": "You're 25 with ₹35,000 monthly income, ₹2 lakh education loan at 9% interest, and ₹50,000 credit card debt at 18% interest",
+        "question": "Which debt should you prioritize paying off first and why?"
+      },
+      {
+        "scenario": 2,
+        "financial_situation": "You have a ₹5 lakh personal loan at 12% interest with 3 years remaining. Your monthly EMI is ₹16,600",
+        "question": "How much interest will you pay over the loan tenure? Should you prepay if you get a bonus?"
+      },
+      {
+        "scenario": 3,
+        "financial_situation": "You've missed 3 credit card payments due to job loss. Current debt: ₹1.5 lakh at 36% annual interest",
+        "question": "What immediate steps should you take to avoid default?"
+      },
+      {
+        "scenario": 4,
+        "financial_situation": "You have ₹3 lakh gold loan at 14% interest and ₹2 lakh personal loan at 11% interest. Monthly income: ₹45,000",
+        "question": "Which loan should you focus on repaying first? Why?"
+      },
+      {
+        "scenario": 5,
+        "financial_situation": "You took ₹10 lakh home loan at 8.5% for 20 years. EMI: ₹8,700. After 5 years, you want to reduce tenure",
+        "question": "How will increasing EMI by ₹3,000 affect total interest paid?"
+      },
+      {
+        "scenario": 6,
+        "financial_situation": "You have ₹50,000 in savings and ₹1 lakh credit card debt at 40% annual interest",
+        "question": "Should you use savings to pay off debt? What factors to consider?"
+      },
+      {
+        "scenario": 7,
+        "financial_situation": "You're being offered a debt consolidation loan at 15% to combine three loans totaling ₹5 lakh (average 18% interest)",
+        "question": "Is this a good decision? What calculations would you make?"
+      },
+      {
+        "scenario": 8,
+        "financial_situation": "You co-signed a ₹7 lakh loan for a friend who stopped paying. Your monthly income: ₹55,000",
+        "question": "What are your options? How to protect your credit score?"
+      },
+      {
+        "scenario": 9,
+        "financial_situation": "You have ₹10,000 monthly surplus after expenses. Debts: ₹1 lakh CC (40%), ₹2 lakh PL (15%)",
+        "question": "Create a 6-month repayment plan using snowball method"
+      },
+      {
+        "scenario": 10,
+        "financial_situation": "You're being charged 3% late fee on ₹75,000 credit card bill. Can pay ₹25,000 now",
+        "question": "Should you pay partial amount? How to negotiate with bank?"
+      }
+    ],
+    "medium": [
+      {
+        "scenario": 11,
+        "financial_situation": "You have ₹15 lakh debt across 7 creditors. CIBIL score: 650. Monthly income: ₹1.2 lakh",
+        "question": "Design a debt management plan considering balance transfers and negotiations"
+      },
+      {
+        "scenario": 12,
+        "financial_situation": "Business owner with ₹25 lakh working capital loan at 16% and ₹10 lakh equipment loan at 12%",
+        "question": "How to prioritize repayments while maintaining business operations?"
+      },
+      {
+        "scenario": 13,
+        "financial_situation": "You have ₹5 lakh credit card debt at 42% APR. Offered settlement of 60% lump sum payment",
+        "question": "Calculate long-term impact of settlement vs continuing payments. Tax implications?"
+      },
+      {
+        "scenario": 14,
+        "financial_situation": "NRI with ₹50 lakh home loan in India (7.5%) and $50k student loan in US (4%)",
+        "question": "Create repayment strategy considering currency risks and tax benefits"
+      },
+      {
+        "scenario": 15,
+        "financial_situation": "You're being offered a credit card balance transfer: 0% for 6 months with 3% fee",
+        "question": "Calculate if this saves money compared to current 36% interest rate"
+      },
+      {
+        "scenario": 16,
+        "financial_situation": "Your ₹20 lakh business loan EMI is 40% of monthly revenue. Sales dropped 30%",
+        "question": "Negotiation strategies with bank for EMI restructuring"
+      },
+      {
+        "scenario": 17,
+        "financial_situation": "You have ₹12 lakh personal loan at 14% and ₹8 lakh home loan at 8.5%. Surplus: ₹35k/month",
+        "question": "Should you prepay personal loan or invest in 9% FD? Show calculations"
+      },
+      {
+        "scenario": 18,
+        "financial_situation": "Received inheritance ₹15 lakh. Debts: ₹10 lakh education loan (7%), ₹5 lakh CC (38%)",
+        "question": "Optimal allocation between debt payoff and emergency fund creation"
+      },
+      {
+        "scenario": 19,
+        "financial_situation": "Divorcing with joint debts: ₹30 lakh home loan, ₹10 lakh car loan. Monthly income: ₹1.5 lakh",
+        "question": "How to separate liabilities legally? Impact on credit scores?"
+      },
+      {
+        "scenario": 20,
+        "financial_situation": "You have ₹2 lakh medical debt at 0% interest but facing collection calls",
+        "question": "Strategies to negotiate payment plan without damaging credit score"
+      }
+    ],
+    "hard": [
+      {
+        "scenario": 21,
+        "financial_situation": "MSME owner with ₹2 crore debt: 40% secured, 60% unsecured. Banking consortium demanding repayment",
+        "question": "Design debt restructuring proposal under RBI's restructuring guidelines"
+      },
+      {
+        "scenario": 22,
+        "financial_situation": "NRI with NRE account earning 6% interest, and ₹75 lakh home loan at 8.5%",
+        "question": "Should you prepay loan or maintain NRE deposits? Consider forex risks"
+      },
+      {
+        "scenario": 23,
+        "financial_situation": "High-net-worth individual with ₹5 crore margin loan against securities portfolio",
+        "question": "Manage debt while protecting against margin calls in volatile markets"
+      },
+      {
+        "scenario": 24,
+        "financial_situation": "Real estate developer with ₹50 crore project finance debt. Sales stalled due to market crash",
+        "question": "Negotiate with banks for one-time settlement vs corporate insolvency options"
+      },
+      {
+        "scenario": 25,
+        "financial_situation": "You have ₹1 crore debt across 15 credit cards and personal loans. Monthly income: ₹2.5 lakh",
+        "question": "Evaluate personal bankruptcy vs debt management program options"
+      },
+      {
+        "scenario": 26,
+        "financial_situation": "Promoter of listed company with pledged shares facing invocation due to debt covenant breach",
+        "question": "Strategies to prevent hostile takeover while managing personal debt"
+      },
+      {
+        "scenario": 27,
+        "financial_situation": "NRI with ₹1.5 crore home loan in India and $200k mortgage in US. Rupee depreciating 5% annually",
+        "question": "Hedging strategy for cross-currency debt exposure"
+      },
+      {
+        "scenario": 28,
+        "financial_situation": "Family dispute over ancestral property with ₹2 crore pending mortgage",
+        "question": "Mediation plan to allocate debts and assets among heirs"
+      },
+      {
+        "scenario": 29,
+        "financial_situation": "Startup with ₹5 crore convertible debt funding. Facing down round valuation",
+        "question": "Negotiate with investors to prevent conversion cliff"
+      },
+      {
+        "scenario": 30,
+        "financial_situation": "You guaranteed ₹50 lakh loan for relative's business now facing bankruptcy",
+        "question": "Legal and financial strategies to limit personal liability"
+      }
+    ],
+    "impossible": [
+      {
+        "scenario": 31,
+        "financial_situation": "Country facing sovereign debt crisis with 90% debt-to-GDP ratio",
+        "question": "Design multilateral debt relief plan balancing IMF conditions and public welfare"
+      },
+      {
+        "scenario": 32,
+        "financial_situation": "Microfinance institution with ₹500 crore NPA portfolio in rural areas",
+        "question": "Create ethical recovery strategy while maintaining financial sustainability"
+      },
+      {
+        "scenario": 33,
+        "financial_situation": "AI system predicting 40% corporate default rate in next recession",
+        "question": "Redesign national credit ecosystem to prevent systemic collapse"
+      },
+      {
+        "scenario": 34,
+        "financial_situation": "Climate change causing ₹10 lakh crore infrastructure debt to become stranded assets",
+        "question": "Develop global debt-for-climate swap mechanism"
+      },
+      {
+        "scenario": 35,
+        "financial_situation": "Central bank digital currency threatening traditional debt markets",
+        "question": "Reimagine monetary policy tools for debt management in CBDC era"
+      },
+      {
+        "scenario": 36,
+        "financial_situation": "Global pandemic causing 30% workforce unemployment and mass loan defaults",
+        "question": "Design universal debt forgiveness program without crashing banking system"
+      },
+      {
+        "scenario": 37,
+        "financial_situation": "AI-powered debt collection algorithms causing increased suicides",
+        "question": "Create ethical framework for AI in collections balancing recovery and humanity"
+      },
+      {
+        "scenario": 38,
+        "financial_situation": "Intergenerational student debt crisis with ₹15 lakh average loan per graduate",
+        "question": "Propose education financing reform integrating income-share agreements"
+      },
+      {
+        "scenario": 39,
+        "financial_situation": "Cryptocurrency-backed loans collapsing due to 80% market crash",
+        "question": "Regulatory response to prevent systemic risk in decentralized finance"
+      },
+      {
+        "scenario": 40,
+        "financial_situation": "Global debt ceiling of $100 trillion being breached due to climate wars",
+        "question": "Reconfigure Bretton Woods system for sustainable planetary financing"
+      }
+    ]
+  }
+},
+
+"Credit scores": {
+  "difficulty_levels": {
+    "easy": [
+      {
+        "scenario": 1,
+        "financial_situation": "22-year-old with no credit history applying for first credit card",
+        "question": "What steps should you take to build a credit history from scratch?"
+      },
+      {
+        "scenario": 2,
+        "financial_situation": "Recent graduate with 1 credit card, 30% utilization ratio. CIBIL score: 710",
+        "question": "How can you improve your credit score within 6 months?"
+      },
+      {
+        "scenario": 3,
+        "financial_situation": "Salaried individual denied personal loan due to no credit history",
+        "question": "What alternative credit-building options are available?"
+      },
+      {
+        "scenario": 4,
+        "financial_situation": "Credit card user paying minimum due monthly. CIBIL score: 680",
+        "question": "How does minimum payment affect credit score? Suggest better strategy"
+      },
+      {
+        "scenario": 5,
+        "financial_situation": "First-time home loan applicant with 2-year credit history",
+        "question": "What CIBIL score is needed for best interest rates? How to achieve it?"
+      },
+      {
+        "scenario": 6,
+        "financial_situation": "Young professional with 3 credit inquiries in 6 months. Score dropped to 690",
+        "question": "How to manage credit inquiries? When will score recover?"
+      },
+      {
+        "scenario": 7,
+        "financial_situation": "Credit card holder with ₹50,000 limit. Current balance: ₹45,000",
+        "question": "Calculate utilization ratio. How to reduce it quickly?"
+      },
+      {
+        "scenario": 8,
+        "financial_situation": "Individual with 6-month-old credit history. Score stuck at 720",
+        "question": "Why isn't score higher? What factors take longer to improve?"
+      },
+      {
+        "scenario": 9,
+        "financial_situation": "Person with 1 closed credit card account from 2 years ago",
+        "question": "Should you keep old credit cards open? How it affects score?"
+      },
+      {
+        "scenario": 10,
+        "financial_situation": "First-time credit user confused between secured vs unsecured credit cards",
+        "question": "Which option better helps build credit history? Why?"
+      }
+    ],
+    "medium": [
+      {
+        "scenario": 11,
+        "financial_situation": "CIBIL score dropped from 780 to 680 after missing 3 EMIs during job loss",
+        "question": "Create 12-month plan to rebuild credit score"
+      },
+      {
+        "scenario": 12,
+        "financial_situation": "Individual with 5 credit cards, 4 loans. Score: 650",
+        "question": "Analyze credit mix and suggest optimization strategy"
+      },
+      {
+        "scenario": 13,
+        "financial_situation": "Entrepreneur with ₹25 lakh business loan. Personal score dropped to 670",
+        "question": "How to separate business/personal credit? Impact on funding?"
+      },
+      {
+        "scenario": 14,
+        "financial_situation": "Error in credit report: closed loan shown as active. Score: 690",
+        "question": "Step-by-step process to dispute and correct report"
+      },
+      {
+        "scenario": 15,
+        "financial_situation": "Divorcee with joint credit cards. Ex-spouse missing payments. Score: 630",
+        "question": "How to legally separate credit liabilities? Recovery plan"
+      },
+      {
+        "scenario": 16,
+        "financial_situation": "NRI with foreign credit history wanting home loan in India",
+        "question": "How to establish Indian credit score? Recognition of overseas history?"
+      },
+      {
+        "scenario": 17,
+        "financial_situation": "Credit card holder offered limit increase from ₹1 lakh to ₹3 lakh",
+        "question": "How will accepting affect credit utilization and score?"
+      },
+      {
+        "scenario": 18,
+        "financial_situation": "Person with 15-year credit history but score stuck at 750",
+        "question": "Advanced strategies to push score to 800+"
+      },
+      {
+        "scenario": 19,
+        "financial_situation": "Debt settlement offer for ₹5 lakh credit card debt. Current score: 550",
+        "question": "How will settlement affect credit report vs bankruptcy?"
+      },
+      {
+        "scenario": 20,
+        "financial_situation": "Co-signed loan turning NPA. Primary borrower defaulting. Score: 580",
+        "question": "Options to limit damage to co-signer's credit profile"
+      }
+    ],
+    "hard": [
+      {
+        "scenario": 21,
+        "financial_situation": "Identity theft victim with 12 fraudulent accounts opened. Score: 450",
+        "question": "Comprehensive recovery plan including legal steps"
+      },
+      {
+        "scenario": 22,
+        "financial_situation": "Business owner with ₹2 crore turnover needing corporate credit facility",
+        "question": "Strategies to build business credit separate from personal"
+      },
+      {
+        "scenario": 23,
+        "financial_situation": "High-net-worth individual with no credit history (always paid cash)",
+        "question": "How to establish creditworthiness without traditional credit"
+      },
+      {
+        "scenario": 24,
+        "financial_situation": "Person with 7-year-old bankruptcy due to be removed from report",
+        "question": "Rebuilding strategy post-bankruptcy deletion timeline"
+      },
+      {
+        "scenario": 25,
+        "financial_situation": "NRI returning to India with 20-year US credit history (FICO 810)",
+        "question": "Leverage international history for Indian credit system"
+      },
+      {
+        "scenario": 26,
+        "financial_situation": "Credit repair company offering to create credit piggybacking accounts",
+        "question": "Ethical and legal implications of authorized user strategies"
+      },
+      {
+        "scenario": 27,
+        "financial_situation": "Government employee with ₹10 lakh personal loan at 14%",
+        "question": "Negotiate better rate using employment stability as leverage"
+      },
+      {
+        "scenario": 28,
+        "financial_situation": "Startup founder needing ₹50 lakh loan with thin credit file",
+        "question": "Alternative credit assessment methods for entrepreneurs"
+      },
+      {
+        "scenario": 29,
+        "financial_situation": "Parent with excellent credit adding child as authorized user abroad",
+        "question": "Cross-border credit history transfer strategies"
+      },
+      {
+        "scenario": 30,
+        "financial_situation": "Individual with 12 credit cards, perfect payment history. Score: 780",
+        "question": "Why not 850? Analyze remaining limiting factors"
+      }
+    ],
+    "impossible": [
+      {
+        "scenario": 31,
+        "financial_situation": "AI system denying loans based on social media behavior patterns",
+        "question": "Design ethical framework for alternative credit scoring"
+      },
+      {
+        "scenario": 32,
+        "financial_situation": "Blockchain-based decentralized credit scoring system",
+        "question": "Overcome regulatory challenges for global implementation"
+      },
+      {
+        "scenario": 33,
+        "financial_situation": "National credit registry hacked, 50 million records altered",
+        "question": "Crisis management plan to restore system integrity"
+      },
+      {
+        "scenario": 34,
+        "financial_situation": "Universal basic credit score system for unbanked population",
+        "question": "Integration model with Aadhaar and UPI infrastructure"
+      },
+      {
+        "scenario": 35,
+        "financial_situation": "Climate change impacting credit scores through property devaluations",
+        "question": "Redesign credit models incorporating climate risk"
+      },
+      {
+        "scenario": 36,
+        "financial_situation": "Post-pandemic world with 40% population having damaged credit",
+        "question": "Mass credit rehabilitation program design"
+      },
+      {
+        "scenario": 37,
+        "financial_situation": "AI credit models showing racial/gender bias in scoring",
+        "question": "Algorithmic fairness audit framework"
+      },
+      {
+        "scenario": 38,
+        "financial_situation": "Cryptocurrency transactions as alternative creditworthiness proof",
+        "question": "Regulatory challenges in integrating crypto history"
+      },
+      {
+        "scenario": 39,
+        "financial_situation": "Global credit score portability across 50+ countries",
+        "question": "Standardization model respecting local regulations"
+      },
+      {
+        "scenario": 40,
+        "financial_situation": "Neuralink-style brain interface tracking financial responsibility",
+        "question": "Ethical implications of biometric credit scoring"
+      }
+    ]
+  }
+},
+
+
+
+"Budgeting": {
+  "difficulty_levels": {
+    "easy": [
+      {
+        "scenario": 1,
+        "financial_situation": "22-year-old earning ₹30,000/month with ₹10,000 fixed expenses (rent, utilities, transport)",
+        "question": "Create a 50-30-20 budget allocation plan"
+      },
+      {
+        "scenario": 2,
+        "financial_situation": "Newly married couple combining incomes: ₹75,000/month with ₹45,000 existing expenses",
+        "question": "Design joint budgeting system with individual discretionary funds"
+      },
+      {
+        "scenario": 3,
+        "financial_situation": "Freelancer earning ₹40,000-₹60,000/month irregularly with ₹35,000 fixed expenses",
+        "question": "Set up emergency fund contribution rule from variable income"
+      },
+      {
+        "scenario": 4,
+        "financial_situation": "Family of 4 spending 70% income on essentials. Monthly income: ₹1,00,000",
+        "question": "Identify 3 areas for expense reduction without lifestyle compromise"
+      },
+      {
+        "scenario": 5,
+        "financial_situation": "Recent graduate with ₹25,000 income. Student loan EMI: ₹8,000 starts in 6 months",
+        "question": "Create savings plan for emergency fund before EMI begins"
+      },
+      {
+        "scenario": 6,
+        "financial_situation": "Working professional spending ₹15,000/month on food delivery and entertainment",
+        "question": "Design 30-day spending freeze plan with alternatives"
+      },
+      {
+        "scenario": 7,
+        "financial_situation": "Retiree with ₹50,000 pension and ₹15,000 medical expenses monthly",
+        "question": "Allocate funds for healthcare while maintaining basic needs"
+      },
+      {
+        "scenario": 8,
+        "financial_situation": "Young parent needing ₹10,000/month childcare costs. Current savings rate: 5%",
+        "question": "Adjust budget to accommodate new expense without debt"
+      },
+      {
+        "scenario": 9,
+        "financial_situation": "IT professional getting annual bonus of ₹1,50,000. Existing debt: ₹2,00,000",
+        "question": "Create bonus allocation plan between debt/ savings/ expenses"
+      },
+      {
+        "scenario": 10,
+        "financial_situation": "College student with ₹15,000/month allowance. Wants to save ₹5,000 monthly",
+        "question": "Develop tracking system for daily expenses"
+      }
+    ],
+    "medium": [
+      {
+        "scenario": 11,
+        "financial_situation": "Family with ₹1,20,000 income. Education (30%), EMI (25%), Groceries (20%), Utilities (15%)",
+        "question": "Implement zero-based budgeting to increase savings rate to 20%"
+      },
+      {
+        "scenario": 12,
+        "financial_situation": "Couple planning wedding in 1 year. Estimated cost: ₹10 lakh. Current savings: ₹2 lakh",
+        "question": "Create monthly savings plan with prioritization strategy"
+      },
+      {
+        "scenario": 13,
+        "financial_situation": "Business owner with 30% income fluctuation monthly. Fixed expenses: ₹1,50,000",
+        "question": "Design rolling 3-month budget with contingency planning"
+      },
+      {
+        "scenario": 14,
+        "financial_situation": "Family needing ₹20 lakh for home down payment in 3 years. Current savings: ₹5 lakh",
+        "question": "Calculate required monthly savings with 8% return assumption"
+      },
+      {
+        "scenario": 15,
+        "financial_situation": "Employee transitioning to freelance work. Previous salary: ₹90,000/month",
+        "question": "Create variable income budget with tax provisions"
+      },
+      {
+        "scenario": 16,
+        "financial_situation": "Parents funding ₹2 lakh/year for child's overseas education. Current income: ₹15 lakh/year",
+        "question": "Adjust existing budget to accommodate education savings"
+      },
+      {
+        "scenario": 17,
+        "financial_situation": "COVID-impacted household needing 20% expense reduction. Current spend: ₹75,000/month",
+        "question": "Implement envelope system for discretionary spending"
+      },
+      {
+        "scenario": 18,
+        "financial_situation": "Couple with ₹1,00,000 income wanting ₹15,000/month investments and ₹25,000 debt repayment",
+        "question": "Balance cash flow using debt snowball method"
+      },
+      {
+        "scenario": 19,
+        "financial_situation": "Family with ₹50,000 medical emergency. Monthly savings capacity: ₹10,000",
+        "question": "Restructure annual budget to repay without credit cards"
+      },
+      {
+        "scenario": 20,
+        "financial_situation": "Tech employee with ₹50,000 bonus quarterly. Current savings rate: 12%",
+        "question": "Automate bonus allocation across 6 financial goals"
+      }
+    ],
+    "hard": [
+      {
+        "scenario": 21,
+        "financial_situation": "NRI with ₹3 lakh India income and $5,000 US income monthly. Family in both countries",
+        "question": "Create multi-currency budget with tax optimization"
+      },
+      {
+        "scenario": 22,
+        "financial_situation": "Startup founder with 6-month runway needing 30% cost reduction",
+        "question": "Prioritize R&D vs marketing spend while retaining team"
+      },
+      {
+        "scenario": 23,
+        "financial_situation": "HNI with ₹10 lakh/month income. Portfolio includes real estate, equities, and philanthropy",
+        "question": "Implement bucket strategy for wealth preservation"
+      },
+      {
+        "scenario": 24,
+        "financial_situation": "Divorcing couple splitting ₹2 crore assets and ₹50 lakh liabilities",
+        "question": "Design separate budgets for both parties post-settlement"
+      },
+      {
+        "scenario": 25,
+        "financial_situation": "Family office managing ₹100 crore wealth across generations",
+        "question": "Create governance model for intergenerational budgeting"
+      },
+      {
+        "scenario": 26,
+        "financial_situation": "Corporate department with ₹50 lakh quarterly budget facing 25% cut",
+        "question": "Reallocate resources using zero-based budgeting principles"
+      },
+      {
+        "scenario": 27,
+        "financial_situation": "Retiree with ₹1 crore fixed deposits and ₹50,000/month expenses in high inflation environment",
+        "question": "Build inflation-protected withdrawal strategy"
+      },
+      {
+        "scenario": 28,
+        "financial_situation": "Family with special needs child requiring ₹5 lakh/year therapy costs",
+        "question": "Long-term budgeting integrating government schemes and investments"
+      },
+      {
+        "scenario": 29,
+        "financial_situation": "Business with 60% receivables delayed due to market conditions",
+        "question": "Create 13-week cash flow forecast with scenario planning"
+      },
+      {
+        "scenario": 30,
+        "financial_situation": "Inheritance recipient managing ₹2 crore windfall across 3 generations",
+        "question": "Design family constitution for wealth distribution"
+      }
+    ],
+    "impossible": [
+      {
+        "scenario": 31,
+        "financial_situation": "National government facing 10% fiscal deficit and currency crisis",
+        "question": "Design austerity measures balancing public welfare and IMF conditions"
+      },
+      {
+        "scenario": 32,
+        "financial_situation": "Mega-city corporation with ₹10,000 crore budget deficit and crumbling infrastructure",
+        "question": "Prioritize capital projects using cost-benefit analysis matrix"
+      },
+      {
+        "scenario": 33,
+        "financial_situation": "Global pandemic requiring 30% GDP stimulus while maintaining debt/GDP ratio",
+        "question": "Structure helicopter money distribution with inflation controls"
+      },
+      {
+        "scenario": 34,
+        "financial_situation": "Climate change adaptation needing $100 billion/year for developing nations",
+        "question": "Develop global carbon budget allocation framework"
+      },
+      {
+        "scenario": 35,
+        "financial_situation": "AI implementation displacing 40% workforce in 5 years",
+        "question": "Design universal basic income model with phased implementation"
+      },
+      {
+        "scenario": 36,
+        "financial_situation": "Post-war reconstruction needing ₹10 lakh crore over decade",
+        "question": "Create multi-layered funding matrix with public-private partnerships"
+      },
+      {
+        "scenario": 37,
+        "financial_situation": "Moon colony establishment with ₹1,00,000 crore initial budget",
+        "question": "Allocate resources between life support systems and research facilities"
+      },
+      {
+        "scenario": 38,
+        "financial_situation": "Global fertility rate collapse impacting pension systems",
+        "question": "Reengineer intergenerational social security budgeting"
+      },
+      {
+        "scenario": 39,
+        "financial_situation": "Singularity-era economy with 70% AI-generated GDP",
+        "question": "Reimagine human income allocation systems"
+      },
+      {
+        "scenario": 40,
+        "financial_situation": "Interplanetary tax regime for Mars colony and Earth-based corporations",
+        "question": "Design dual-planetary budgeting framework"
+      }
+    ]
+  }
+},
+
+
+"Taxes": {
+  "difficulty_levels": {
+    "easy": [
+      {
+        "scenario": 1,
+        "financial_situation": "25-year-old salaried employee earning ₹8.5 lakh/year with standard deductions",
+        "question": "Calculate annual tax liability under new tax regime vs old regime"
+      },
+      {
+        "scenario": 2,
+        "financial_situation": "Freelancer earning ₹12 lakh/year with ₹2 lakh business expenses",
+        "question": "Determine applicable ITR form and presumptive taxation options under Section 44ADA"
+      },
+      {
+        "scenario": 3,
+        "financial_situation": "Senior citizen with ₹6 lakh pension and ₹3 lakh FD interest",
+        "question": "Identify available tax exemptions and TDS reclaim process"
+      },
+      {
+        "scenario": 4,
+        "financial_situation": "New homeowner paying ₹1.5 lakh home loan interest and ₹70,000 principal",
+        "question": "Calculate Section 24 and 80C benefits"
+      },
+      {
+        "scenario": 5,
+        "financial_situation": "Investor with ₹50,000 LTCG from equity funds held 14 months",
+        "question": "Compute tax liability and compare with STCG"
+      },
+      {
+        "scenario": 6,
+        "financial_situation": "Individual with ₹15,000/month HRA in metro city, rent paid ₹12,000/month",
+        "question": "Calculate HRA exemption using salary structure"
+      },
+      {
+        "scenario": 7,
+        "financial_situation": "Parent paying ₹1.2 lakh/year college fees for two children",
+        "question": "Determine Section 80C eligibility and documentation needed"
+      },
+      {
+        "scenario": 8,
+        "financial_situation": "Small trader with ₹45 lakh turnover opting for composition scheme",
+        "question": "Calculate GST liability and compliance requirements"
+      },
+      {
+        "scenario": 9,
+        "financial_situation": "NRI with ₹10 lakh NRE FD interest and ₹5 lakh Indian rental income",
+        "question": "Determine tax residency status and TDS applicability"
+      },
+      {
+        "scenario": 10,
+        "financial_situation": "Individual forgetting to submit 15G form, ₹25,000 TDS deducted on FDs",
+        "question": "Process to claim TDS refund while filing ITR"
+      }
+    ],
+    "medium": [
+      {
+        "scenario": 11,
+        "financial_situation": "CA firm partner with ₹35 lakh profit share and ₹10 lakh other income",
+        "question": "Calculate advance tax payments and professional tax compliance"
+      },
+      {
+        "scenario": 12,
+        "financial_situation": "Investor with ₹12 lakh LTCG from property and ₹5 lakh STCG from shares",
+        "question": "Optimize capital gains through indexation and tax harvesting"
+      },
+      {
+        "scenario": 13,
+        "financial_situation": "Expat on ₹2 crore salary with ESPP and RSU income",
+        "question": "Compute tax liability under DTAA for US-India"
+      },
+      {
+        "scenario": 14,
+        "financial_situation": "Family inheriting ₹1.5 crore property with ₹30 lakh improvement costs",
+        "question": "Calculate capital gains for partial sale after 3 years"
+      },
+      {
+        "scenario": 15,
+        "financial_situation": "Business owner with ₹95 lakh turnover across 3 GST states",
+        "question": "Determine GST registration requirements and input tax credit"
+      },
+      {
+        "scenario": 16,
+        "financial_situation": "Investor with ₹18 lakh ELSS, ₹1.5 lakh health insurance, and NPS contributions",
+        "question": "Optimize Section 80C/D deductions with salary structure"
+      },
+      {
+        "scenario": 17,
+        "financial_situation": "Freelancer receiving $20,000 from overseas clients",
+        "question": "Calculate GST on export services and foreign tax credits"
+      },
+      {
+        "scenario": 18,
+        "financial_situation": "Senior citizen with ₹18 lakh interest income and ₹7 lakh medical bills",
+        "question": "Maximize deductions under Sections 80D and 80TTB"
+      },
+      {
+        "scenario": 19,
+        "financial_situation": "Startup with ₹1.2 crore R&D expenses and ₹80 lakh revenue",
+        "question": "Claim Section 35(2AB) deduction and tax holiday benefits"
+      },
+      {
+        "scenario": 20,
+        "financial_situation": "Individual gifting ₹12 lakh to sibling for home purchase",
+        "question": "Analyze clubbing provisions and tax implications"
+      }
+    ],
+    "hard": [
+      {
+        "scenario": 21,
+        "financial_situation": "NRI with Green Card selling Indian property while residing in USA",
+        "question": "Compute capital gains under DTAA and FIRPTA implications"
+      },
+      {
+        "scenario": 22,
+        "financial_situation": "Family business restructuring as LLP with ₹15 crore asset transfer",
+        "question": "Calculate stamp duty and capital gains rollover benefits"
+      },
+      {
+        "scenario": 23,
+        "financial_situation": "Company providing ESOPs to employees across 5 countries",
+        "question": "Design tax-efficient vesting structure under OECD guidelines"
+      },
+      {
+        "scenario": 24,
+        "financial_situation": "HNI with ₹8 crore income from 7 countries and offshore trusts",
+        "question": "Implement CFC rules and FATCA compliance strategy"
+      },
+      {
+        "scenario": 25,
+        "financial_situation": "Merger of two ₹500 crore companies with cross-state GST credits",
+        "question": "Reconcile input tax credit and carry forward losses"
+      },
+      {
+        "scenario": 26,
+        "financial_situation": "Real estate developer with 12 ongoing projects under RERA",
+        "question": "Calculate percentage completion method taxes vs cash flow"
+      },
+      {
+        "scenario": 27,
+        "financial_situation": "Crypto investor with ₹2 crore gains across 5 exchanges",
+        "question": "Compute tax liability under current laws and proposed VDAs"
+      },
+      {
+        "scenario": 28,
+        "financial_situation": "Company facing ₹1.2 crore GST demand notice",
+        "question": "Draft objection letter citing inverted duty structure and ITC rules"
+      },
+      {
+        "scenario": 29,
+        "financial_situation": "NRI surrendering LIC policy after 4 years with ₹25 lakh maturity",
+        "question": "Calculate tax treatment under Section 10(10D) and DTAA"
+      },
+      {
+        "scenario": 30,
+        "financial_situation": "Family settlement of ₹10 crore ancestral property",
+        "question": "Analyze capital gains exemption under Section 49"
+      }
+    ],
+    "impossible": [
+      {
+        "scenario": 31,
+        "financial_situation": "Global tech giant facing ₹8,000 crore equalization levy dispute",
+        "question": "Design OECD-compliant digital tax framework"
+      },
+      {
+        "scenario": 32,
+        "financial_situation": "Country implementing real-time transaction-based taxation",
+        "question": "Overcome cash flow challenges for businesses"
+      },
+      {
+        "scenario": 33,
+        "financial_situation": "AI system auditing 10 million GST returns annually",
+        "question": "Develop ethical AI governance model for tax authorities"
+      },
+      {
+        "scenario": 34,
+        "financial_situation": "Global minimum 15% corporate tax implementation",
+        "question": "Re-engineer MNC structures under GloBE rules"
+      },
+      {
+        "scenario": 35,
+        "financial_situation": "CBDC transactions requiring real-time TDS deduction",
+        "question": "Redesign tax collection infrastructure"
+      },
+      {
+        "scenario": 36,
+        "financial_situation": "Climate tax on corporations exceeding carbon credits",
+        "question": "Develop cross-border carbon accounting system"
+      },
+      {
+        "scenario": 37,
+        "financial_situation": "Interplanetary mining company with asteroid resources",
+        "question": "Create tax framework for space economy under OST"
+      },
+      {
+        "scenario": 38,
+        "financial_situation": "Global wealth tax proposal for UHNWIs above $100 million",
+        "question": "Overcome treaty shopping and residency challenges"
+      },
+      {
+        "scenario": 39,
+        "financial_situation": "DAOs operating in metaverse generating ₹500 crore revenue",
+        "question": "Determine tax jurisdiction and characterization of income"
+      },
+      {
+        "scenario": 40,
+        "financial_situation": "Post-national digital nomad economy with no physical HQ",
+        "question": "Reimagine permanent establishment rules"
+      }
+    ]
+  }
+}
+}
+}
