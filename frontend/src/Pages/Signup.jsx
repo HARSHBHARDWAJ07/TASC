@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import './CSS/Signup.css';
-import Illustation from '../Assets/ils.svg';
+import Illustation from '../Assets/ils.jpg';
 import { Link } from 'react-router-dom';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
