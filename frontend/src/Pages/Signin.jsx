@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
 import './CSS/Signin.css';
-import Illustation from '../Assets/ils.svg';
+import Illustation from '../Assets/ils.jpg';
 import { Link } from 'react-router-dom';
 
 const API_URL = process.env.REACT_APP_API_URL;
