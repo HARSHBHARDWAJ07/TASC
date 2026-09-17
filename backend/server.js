@@ -25,8 +25,12 @@ env.config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const corsOrigins = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim())
+  : ['https://tasc-so9j.onrender.com'];
+
 app.use(cors({
-  origin: ['https://tasc-so9j.onrender.com'],
+  origin: corsOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -35,28 +39,14 @@ app.use(cors({
 
 app.set('trust proxy', 1)
 
-const db = new pg.Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
-});
-
-
 const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
 });
 
-
-
-app.use((err, req, res, next) => {
-    logger.error(`[${req.method}] ${req.url} - ${err.message}`);
-    res.status(err.status || 500).json({ error: err.message || "Internal Server Error" });
-  });
-  
-  
 const initializeDatabase = async () => {
   try {
-   await  db.query(`
+   await  pool.query(`
       CREATE TABLE IF NOT EXISTS users (
         email VARCHAR(255) PRIMARY KEY,
         username VARCHAR(255) NOT NULL,
@@ -85,7 +75,7 @@ const initializeDatabase = async () => {
       CREATE INDEX IF NOT EXISTS idx_user_points_user ON user_points(user_id);
    `);
 
-    await db.query(`
+    await pool.query(`
       CREATE TABLE IF NOT EXISTS user_sessions (
         sid varchar NOT NULL PRIMARY KEY,
         sess json NOT NULL,
@@ -93,34 +83,25 @@ const initializeDatabase = async () => {
       );
     `);
 
-    await db.query(`
-      CREATE INDEX IF NOT EXISTS IDX_user_sessions_expire 
+    await pool.query(`
+      CREATE INDEX IF NOT EXISTS IDX_user_sessions_expire
       ON user_sessions (expire);
     `);
 
     console.log('Database tables initialized successfully');
   } catch (error) {
     console.error('Error initializing database:', error);
-    process.exit(1); 
+    process.exit(1);
   }
 };
 
-
-
-db.connect(async (err) => {
-  if (err) {
-    console.error('Connection error', err.stack);
-  } else {
-    console.log('Connected to the database');
-    await initializeDatabase(); 
-  }
-});
-pool.connect((err, client, release) => {
+pool.connect(async (err, client, release) => {
   if (err) {
     console.error('Error acquiring client', err.stack);
   } else {
     console.log('Connected to the database');
     release();
+    await initializeDatabase();
   }
 });
 
@@ -211,8 +192,8 @@ app.use(bodyParser.json());
       passwordField: 'password',
     }, async (email, password, done) => {
       try {
-        const result = await db.query("SELECT * FROM users WHERE email = $1", [email]);
-    
+        const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+
         if (result.rows.length === 0) {
           return done(null, false, { message: "Invalid email or password." });
         }
@@ -236,10 +217,10 @@ app.use(bodyParser.json());
     
     passport.deserializeUser(async (email, done) => {
       try {
-        const result = await db.query("SELECT * FROM users WHERE email = $1", [email]);
-    
+        const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+
         if (result.rows.length > 0) {
-          done(null, result.rows[0]); 
+          done(null, result.rows[0]);
         } else {
           done(new Error("User not found"), null);
         }
@@ -260,7 +241,7 @@ app.use(bodyParser.json());
   
     try {
       
-      const checkResult = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+      const checkResult = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
   
       if (checkResult.rows.length > 0) {
         return res.status(400).json({ message: 'User already exists. Please login.' });
@@ -281,7 +262,7 @@ app.use(bodyParser.json());
                <p>Thank you!</p>`,
       });
   
-      await db.query(
+      await pool.query(
         "INSERT INTO otp_store (email, otp, expires_at) VALUES ($1, $2, $3) ON CONFLICT (email) DO UPDATE SET otp = $2, expires_at = $3",
         [email, currentotp, otpExpiresAt]
       );
@@ -303,7 +284,7 @@ app.use(bodyParser.json());
   
     try {
       
-      const otpResult = await db.query("SELECT otp, expires_at FROM otp_store WHERE email = $1", [email]);
+      const otpResult = await pool.query("SELECT otp, expires_at FROM otp_store WHERE email = $1", [email]);
        
       if (otpResult.rows.length === 0) {
         return res.status(400).json({ message: "No OTP found for this email." });
@@ -322,12 +303,22 @@ app.use(bodyParser.json());
         return res.status(400).json({ message: "OTP expired." });
       }
   
-      await db.query('INSERT INTO users (email, username, hashed_password) VALUES ($1, $2, $3) RETURNING *',
+      const insertResult = await pool.query('INSERT INTO users (email, username, hashed_password) VALUES ($1, $2, $3) RETURNING *',
         [email, username, hashedPassword]);
-  
-        await db.query("DELETE FROM otp_store WHERE email = $1", [email]);
-  
-      res.status(200).json({ message: 'Email verified successfully.' });
+
+        await pool.query("DELETE FROM otp_store WHERE email = $1", [email]);
+
+      const newUser = insertResult.rows[0];
+      req.logIn(newUser, (err) => {
+        if (err) {
+          console.error('Error logging in after verification:', err);
+          return res.status(500).json({ message: 'Verification succeeded but login failed. Please log in.' });
+        }
+        res.status(200).json({
+          message: 'Email verified successfully.',
+          user: { email: newUser.email, username: newUser.username },
+        });
+      });
     } catch (err) {
       console.error('Unexpected error during verification:', err);
       res.status(500).json({ message: 'Internal server error' });
@@ -358,7 +349,7 @@ app.use(bodyParser.json());
         return res.status(401).json({ message: "Unauthorized" });
       }
        else {
-      const result = await db.query("SELECT * FROM users WHERE email = $1", [req.user.email]);
+      const result = await pool.query("SELECT * FROM users WHERE email = $1", [req.user.email]);
         if (result.rows.length > 0) {
           console.log('Authenticated user:', result.rows[0]);
           return res.status(200).json({ user: result.rows[0], status: "ok" });
@@ -377,7 +368,7 @@ app.use(bodyParser.json());
         return res.status(401).json({ message: "Unauthorized" });
       }
        else {
-      const result = await db.query("SELECT * FROM users WHERE email = $1", [req.user.email]);
+      const result = await pool.query("SELECT * FROM users WHERE email = $1", [req.user.email]);
         if (result.rows.length > 0) {
           console.log('Authenticated user:', result.rows[0]);
           return res.status(200).json({ user: result.rows[0], status: "ok" });

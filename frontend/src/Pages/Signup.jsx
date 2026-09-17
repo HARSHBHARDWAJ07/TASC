@@ -21,7 +21,7 @@ const Signup = () => {
    e.preventDefault();
 
     try {
-        const response = await axios.post(`${API_URL}/signup`, {  email });
+        const response = await axios.post(`${API_URL}/signup`, {  email }, { withCredentials: true });
 
         if (response.status === 201) {
             alert('Signup successful. Please verify the OTP sent to your email.');
@@ -45,7 +45,7 @@ const handleVerifyOtp = async (e) => {
     e.preventDefault();
 
     try {
-        const response = await axios.post(`${API_URL}/verify-otp`, { email, otp,password, username });
+        const response = await axios.post(`${API_URL}/verify-otp`, { email, otp,password, username }, { withCredentials: true });
 
         if (response.status === 200) {
             alert('Email verified successfully!');

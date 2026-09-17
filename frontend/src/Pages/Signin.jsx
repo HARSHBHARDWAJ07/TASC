@@ -29,10 +29,10 @@ const Signin = () => {
 
       }
     } catch (error) {
-     
-      if(error.datas) {
-        
-        alert(`login failed: ${error.datas.data.message}`);
+
+      if(error.response) {
+
+        alert(`login failed: ${error.response.data.message}`);
       } else if (error.request) {
          
           alert('login failed: No response from server.');
