@@ -2,9 +2,9 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import pkg from "pg";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import axios from "axios";
 
-const { Pool } = pkg; 
+const { Pool } = pkg;
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -27,8 +27,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const questionsFilePath = path.join(__dirname, "../data/questions.json");
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" }, { timeout: 20000 });
 
 
 export const fetchQuestions = async (req, res, next) => {
@@ -88,18 +86,33 @@ export const evaluateAnswer = async (req, res, next) => {
   const maxAttempts = 2;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
-      const result = await model.generateContent(prompt);
-      const scores = result.response.text();
-      const score = scores.toString();
+      const response = await axios.post(
+        "https://api.deepseek.com/chat/completions",
+        {
+          model: "deepseek-chat",
+          messages: [{ role: "user", content: prompt }],
+          stream: false,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.DEEPSEEK_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          timeout: 20000,
+        }
+      );
+
+      const score = response.data.choices[0].message.content.trim();
       if (isNaN(score)) throw new Error("Invalid AI response");
 
       return res.status(200).json({ success: true, score });
     } catch (error) {
-      const isRetryable = error.message?.includes("503") || error.message?.includes("aborted");
+      const status = error.response?.status;
+      const isRetryable = status === 503 || status === 429 || error.code === "ECONNABORTED";
       if (!isRetryable || attempt === maxAttempts) {
-        return next(error);
+        return next(new Error(error.response?.data?.error?.message || error.message));
       }
-      console.warn(`Gemini call failed (attempt ${attempt}/${maxAttempts}), retrying:`, error.message);
+      console.warn(`DeepSeek call failed (attempt ${attempt}/${maxAttempts}), retrying:`, error.message);
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   }
