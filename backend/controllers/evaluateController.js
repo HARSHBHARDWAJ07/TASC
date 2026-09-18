@@ -82,17 +82,25 @@ export const evaluateAnswer = async (req, res, next) => {
     return res.status(400).json({ error: "Both question and answer are required." });
   }
  
-  try {
-    const prompt = `i am preparing a finacial test to increase the financial knowledge . iwant you to be judge . i will give a question and a answer of it . you have to judge the answer on the relevance to the  question you just have to tell me point out of 10 , nothing else . you only have to give me number nothing else for example if the point is 6 you will give only the no. 6 . this is the question : ${financial_situation} and ${question} . this the answer : ${answer}`;
-    console.log("Generated Prompt:", prompt);
-    const result = await model.generateContent( prompt );
-    console.log(result.response.text());
-    const scores = result.response.text();
-    const score = scores.toString();
-    if (isNaN(score)) throw new Error("Invalid AI response");
+  const prompt = `i am preparing a finacial test to increase the financial knowledge . iwant you to be judge . i will give a question and a answer of it . you have to judge the answer on the relevance to the  question you just have to tell me point out of 10 , nothing else . you only have to give me number nothing else for example if the point is 6 you will give only the no. 6 . this is the question : ${financial_situation} and ${question} . this the answer : ${answer}`;
+  console.log("Generated Prompt:", prompt);
 
-    res.status(200).json({ success: true, score });
-  } catch (error) {
-    next(error);
+  const maxAttempts = 2;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const result = await model.generateContent(prompt);
+      const scores = result.response.text();
+      const score = scores.toString();
+      if (isNaN(score)) throw new Error("Invalid AI response");
+
+      return res.status(200).json({ success: true, score });
+    } catch (error) {
+      const isRetryable = error.message?.includes("503") || error.message?.includes("aborted");
+      if (!isRetryable || attempt === maxAttempts) {
+        return next(error);
+      }
+      console.warn(`Gemini call failed (attempt ${attempt}/${maxAttempts}), retrying:`, error.message);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
   }
 };
