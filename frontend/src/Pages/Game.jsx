@@ -217,6 +217,7 @@ const Game = () => {
 
         {gameStarted && questions.length > 0 && !gameOver && (
           <Question
+            key={currentQuestionIndex}
             data={questions[currentQuestionIndex]}
             onAnswer={handleAnswer}
           />
