@@ -29,7 +29,7 @@ export const evaluateAnswer = async (question,
       question: question?.trim(), // Ensure all inputs are sanitized
       financial_situation: financialSituation?.trim(),
       answer: answer?.trim(),
-    });
+    }, { timeout: 25000 });
   return response.data;
 }
   

@@ -377,7 +377,12 @@ app.use(bodyParser.json());
 
 
     });
-  
+
+    app.use((err, req, res, next) => {
+      console.error(`[${req.method}] ${req.url} -`, err);
+      res.status(err.status || 500).json({ message: err.message || "Internal server error" });
+    });
+
     app.listen(port, () => {
       console.log(`Server running on port ${port}`);
     });

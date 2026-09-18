@@ -18,6 +18,12 @@
   padding: 2rem;
 }
 
+.answer-error {
+  color: var(--error-color);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
 .content-wrapper {
   max-width: 1000px;
   margin: 0 auto;

@@ -28,7 +28,7 @@ const __dirname = path.dirname(__filename);
 
 const questionsFilePath = path.join(__dirname, "../data/questions.json");
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" }, { timeout: 20000 });
 
 
 export const fetchQuestions = async (req, res, next) => {
@@ -77,11 +77,6 @@ export const evaluateAnswer = async (req, res, next) => {
   const { answer, question ,financial_situation} = req.body;
 
   console.log("Received Body:", req.body);
- 
-
-  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
-
 
   if (!answer || !question || !financial_situation)  {
     return res.status(400).json({ error: "Both question and answer are required." });

@@ -5,12 +5,16 @@ import "./CSS/Question.css";
 const Question = ({ data, onAnswer, onExit }) => {
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async () => {
+    setError("");
     if (!answer.trim()) {
-      alert("Please provide an answer.");
+      setError("Please provide an answer.");
       return;
     }
+    setSubmitting(true);
     try {
       console.log("Submitting data:", data);
       const { score } = await evaluateAnswer(
@@ -20,9 +24,11 @@ const Question = ({ data, onAnswer, onExit }) => {
       );
       setFeedback(`Score: ${score}/10`);
       onAnswer(score);
-    } catch (error) {
-      console.error("Failed to evaluate answer:", error);
-      alert("Failed to submit answer. Please try again.");
+    } catch (err) {
+      console.error("Failed to evaluate answer:", err);
+      setError("Failed to submit answer. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -72,9 +78,11 @@ const Question = ({ data, onAnswer, onExit }) => {
             />
           </div>
 
+          {error && <p className="answer-error">{error}</p>}
+
           <div className="action-buttons">
-            <button onClick={handleSubmit} className="submit-button">
-              Submit Answer
+            <button onClick={handleSubmit} className="submit-button" disabled={submitting}>
+              {submitting ? "Submitting..." : "Submit Answer"}
             </button>
           </div>
 
