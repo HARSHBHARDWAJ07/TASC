@@ -7,7 +7,7 @@ import env from "dotenv";
 import session from "express-session";
 import bodyParser from "body-parser";import GoogleStragy from "passport-google-oauth2";
 import { Strategy as LocalStrategy } from "passport-local";
-import nodemailer from "nodemailer";
+import axios from "axios";
 import connectPgSimple from 'connect-pg-simple';
  import evaluateRoutes from "./routes/evaluateRoutes.js";
  import userPointsRoutes from "./routes/userPointsRoutes.js";
@@ -144,28 +144,26 @@ app.use(bodyParser.json());
     }
   
     
-    const transporter = nodemailer.createTransport({
-      service: 'gmail', 
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-  
-  
     const sendMail = async ({ to, subject, html }) => {
-      const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to,
-        subject,
-        html,
-      };
-    
       try {
-        await transporter.sendMail(mailOptions);
+        await axios.post(
+          "https://api.brevo.com/v3/smtp/email",
+          {
+            sender: { email: process.env.BREVO_SENDER_EMAIL, name: "TASC" },
+            to: [{ email: to }],
+            subject,
+            htmlContent: html,
+          },
+          {
+            headers: {
+              "api-key": process.env.BREVO_API_KEY,
+              "Content-Type": "application/json",
+            },
+          }
+        );
         console.log(`Email sent successfully to ${to}`);
       } catch (error) {
-        console.error('Error sending email:', error);
+        console.error('Error sending email:', error.response?.data || error.message);
         throw new Error('Email sending failed');
       }
     };
