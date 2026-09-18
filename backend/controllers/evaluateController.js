@@ -28,7 +28,7 @@ const __dirname = path.dirname(__filename);
 
 const questionsFilePath = path.join(__dirname, "../data/questions.json");
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
 
 export const fetchQuestions = async (req, res, next) => {
@@ -80,7 +80,7 @@ export const evaluateAnswer = async (req, res, next) => {
  
 
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
 
   if (!answer || !question || !financial_situation)  {
