@@ -83,6 +83,14 @@ const Game = () => {
   }
 };
 
+  const CATEGORY_COLUMN_MAP = {
+    "investment and saving": "saving",
+    "Debt management": "debtmanagement",
+    "Credit scores": "credit",
+    "Budgeting": "budgeting",
+    "Taxes": "taxes",
+  };
+
   const handleLevelUnlock = async () => {
     if (score >= 60) {
       const levels = ["easy", "medium", "hard", "impossible"];
@@ -92,12 +100,19 @@ const Game = () => {
         setUnlockedLevels((prevLevels) => [...prevLevels, nextLevel]);
 
         try {
-          // Make sure this URL matches your backend configuration.
-          await fetch(`${API_URL}/api/questions/updatePoints`, {
+          const response = await fetch(`${API_URL}/api/updateCategoryPoints`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ points: 1 }),
+            credentials: "include",
+            body: JSON.stringify({
+              userId: user?.email,
+              category: CATEGORY_COLUMN_MAP[category],
+              increment: 1,
+            }),
           });
+          if (!response.ok) {
+            throw new Error(`Failed to save progress (${response.status})`);
+          }
           alert(
             `Congratulations! You've unlocked ${nextLevel.toUpperCase()} level and earned a point.`
           );

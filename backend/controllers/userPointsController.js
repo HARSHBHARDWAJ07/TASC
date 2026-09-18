@@ -54,6 +54,8 @@ export const fetchUserProgress = async (req, res, next) => {
 };
 
 
+const ALLOWED_CATEGORIES = ["saving", "taxes", "credit", "debtmanagement", "budgeting"];
+
 export const updateUserCategoryPoints = async (req, res, next) => {
   const { userId, category, increment } = req.body;
 
@@ -61,8 +63,12 @@ export const updateUserCategoryPoints = async (req, res, next) => {
     return res.status(400).json({ error: "User ID, category, and increment value are required." });
   }
 
+  if (!ALLOWED_CATEGORIES.includes(category)) {
+    return res.status(400).json({ error: "Invalid category." });
+  }
+
   try {
-    const column = `category_${category}`; 
+    const column = `category_${category}`;
 
     const existingEntry = await pool.query(
       "SELECT * FROM user_points WHERE user_id = $1",

@@ -4,7 +4,6 @@ import "./CSS/Question.css";
 
 const Question = ({ data, onAnswer, onExit }) => {
   const [answer, setAnswer] = useState("");
-  const [feedback, setFeedback] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -22,7 +21,6 @@ const Question = ({ data, onAnswer, onExit }) => {
         data.financial_situation,
         answer
       );
-      setFeedback(`Score: ${score}/10`);
       onAnswer(score);
     } catch (err) {
       console.error("Failed to evaluate answer:", err);
@@ -85,12 +83,6 @@ const Question = ({ data, onAnswer, onExit }) => {
               {submitting ? "Submitting..." : "Submit Answer"}
             </button>
           </div>
-
-          {feedback && (
-            <div className="feedback-badge">
-              <span>{feedback}</span>
-            </div>
-          )}
         </div>
       </div>
     </div>
