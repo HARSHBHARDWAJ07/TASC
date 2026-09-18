@@ -14,27 +14,29 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [otp, setOtp] = useState('');
-  const [step, setStep] = useState(1); 
+  const [step, setStep] = useState(1);
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const handleSignUp = async (e) => {
-    
+
    e.preventDefault();
+   setMessage('');
 
     try {
         const response = await axios.post(`${API_URL}/signup`, {  email }, { withCredentials: true });
 
         if (response.status === 201) {
-            alert('Signup successful. Please verify the OTP sent to your email.');
+            setMessage('Signup successful. Please verify the OTP sent to your email.');
             setStep(2);
         }
     } catch (error) {
         console.error('Error during registration:', error);
         if (error.response) {
-            alert(`Registration failed: ${error.response.data.message}`);
+            setMessage(`Registration failed: ${error.response.data.message}`);
         } else if (error.request) {
-            alert('Registration failed: No response from server.');
+            setMessage('Registration failed: No response from server.');
         } else {
-            alert(`Registration failed: ${error.message}`);
+            setMessage(`Registration failed: ${error.message}`);
         }
     }
 };
@@ -43,24 +45,24 @@ const Signup = () => {
 
 const handleVerifyOtp = async (e) => {
     e.preventDefault();
+    setMessage('');
 
     try {
         const response = await axios.post(`${API_URL}/verify-otp`, { email, otp,password, username }, { withCredentials: true });
 
         if (response.status === 200) {
-            alert('Email verified successfully!');
             navigate('/game');
         } else {
-            alert('OTP verification failed. Please try again.');
+            setMessage('OTP verification failed. Please try again.');
         }
     } catch (error) {
         console.error('Error during OTP verification:', error);
         if (error.response) {
-            alert(`Verification failed: ${error.response.data.message}`);
+            setMessage(`Verification failed: ${error.response.data.message}`);
         } else if (error.request) {
-            alert('Verification failed: No response from server.');
+            setMessage('Verification failed: No response from server.');
         } else {
-            alert(`Verification failed: ${error.message}`);
+            setMessage(`Verification failed: ${error.message}`);
         }
     }
 };
@@ -69,6 +71,8 @@ const handleVerifyOtp = async (e) => {
   return (
     <div className='signin-container'>
       <div className="form-container">
+
+      {message && <p className="form-message">{message}</p>}
 
       {step === 1 ? (
 

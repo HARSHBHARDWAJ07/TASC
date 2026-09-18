@@ -10,35 +10,36 @@ const API_URL = process.env.REACT_APP_API_URL;
 const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   const accessReq = async (e) => {
     e.preventDefault();
+    setMessage('');
 
     try{
       const datas = await axios.post(`${API_URL}/login` ,{email , password},{
-        withCredentials:true,  
+        withCredentials:true,
     });
-      
+
       if (datas.status === 200) {
-        alert('success');
         localStorage.setItem('user', JSON.stringify(datas.data.user));
        navigate('/game');
       } else {
-       alert('login failed please try again');
+       setMessage('Login failed. Please try again.');
 
       }
     } catch (error) {
 
       if(error.response) {
 
-        alert(`login failed: ${error.response.data.message}`);
+        setMessage(`Login failed: ${error.response.data.message}`);
       } else if (error.request) {
-         
-          alert('login failed: No response from server.');
+
+          setMessage('Login failed: No response from server.');
       } else {
-          
-          alert(`login failed: ${error.message}`);
+
+          setMessage(`Login failed: ${error.message}`);
 
       }
     }
@@ -51,6 +52,7 @@ const Signin = () => {
         onSubmit={accessReq}
         >
           <h3 className='main-text'>Welcome back !!</h3>
+          {message && <p className="form-message">{message}</p>}
           <div className="frame8"></div>
           <div className='frame9'>
             <hr />
