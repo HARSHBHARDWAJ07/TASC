@@ -128,6 +128,19 @@ body {
   background-color: #f7fafc;
 }
 
+.categoryButton.selected,
+.difficultyButton.selected {
+  background-color: #4299e1;
+  border-color: #4299e1;
+  color: white;
+}
+
+.categoryButton.selected:hover,
+.difficultyButton.selected:hover {
+  background-color: #3182ce;
+  border-color: #3182ce;
+}
+
 /* Start Button */
 .startButtonWrapper {
   margin: 2rem 0;

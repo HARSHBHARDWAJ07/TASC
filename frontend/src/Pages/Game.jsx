@@ -189,7 +189,7 @@ const Game = () => {
                 <button
                   key={cat}
                   onClick={() => handleCategoryChange(cat)}
-                  className="categoryButton"
+                  className={`categoryButton${category === cat ? " selected" : ""}`}
                 >
                   {cat.charAt(0).toUpperCase() + cat.slice(1)}
                 </button>
@@ -208,7 +208,7 @@ const Game = () => {
                   key={level}
                   disabled={!unlockedLevels.includes(level)}
                   onClick={() => handleDifficultyChange(level)}
-                  className="difficultyButton"
+                  className={`difficultyButton${difficulty === level ? " selected" : ""}`}
                 >
                   {level.charAt(0).toUpperCase() + level.slice(1)}
                 </button>
